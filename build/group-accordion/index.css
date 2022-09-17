@@ -1,0 +1,27 @@
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/group-accordion/editor.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/*
+* Style Works for Editor Only
+*/
+.wp-block-aab-group-accordion {
+  border: 1px dashed rgba(204, 204, 204, 0.8);
+  padding: 15px 15px 30px 15px !important;
+}
+.wp-block-aab-group-accordion .wp-block-aab-accordion-item .block-list-appender {
+  left: auto !important;
+  right: 0;
+  margin-left: 0 !important;
+}
+.wp-block-aab-group-accordion .block-list-appender {
+  left: 50% !important;
+  right: auto;
+  margin-left: -12px !important;
+}
+.wp-block-aab-group-accordion [aria-label="Add Single Accordion"] {
+  border-radius: 50% !important;
+  position: absolute;
+  bottom: -35px !important;
+}
+
+/*# sourceMappingURL=index.css.map*/

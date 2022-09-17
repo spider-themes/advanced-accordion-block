@@ -1,0 +1,1 @@
+{"version":3,"file":"accordion/index.css","mappings":";;;AAAA;;CAAA;AAGA;EACC;EACA;EACA;EACA;AACD,C","sources":["webpack://accordion/./src/accordion/editor.scss"],"sourcesContent":["/*\r\n* Style Works for Editor Only\r\n*/\r\n.aa-custom-spacer {\r\n\twidth: 100%;\r\n\theight: 1px;\r\n\tbackground: #e3e3e3;\r\n\tmargin: 16px 0;\r\n}\r\n"],"names":[],"sourceRoot":""}
