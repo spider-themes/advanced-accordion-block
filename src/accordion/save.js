@@ -2,6 +2,7 @@
 /* eslint-disable no-lonely-if */
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 const { Fragment } = wp.element;
+
 const Save = ({ attributes }) => {
 	const {
 		uniqueId,
@@ -25,6 +26,7 @@ const Save = ({ attributes }) => {
 		link,
 		tab,
 		disableAccordion,
+		feedbackShow
 	} = attributes;
 
 	const activeClass = makeActive
@@ -33,6 +35,7 @@ const Save = ({ attributes }) => {
 
 	// initial accordion stage
 	let currentIconClass;
+	
 	if (makeActive === false) {
 		currentIconClass = iconClass;
 	} else {
@@ -174,9 +177,18 @@ const Save = ({ attributes }) => {
 						}}
 					>
 						<InnerBlocks.Content />
+						{feedbackShow == 'show' && (
+						<span className={'feedback-btn-wrap'} data-id={`${uniqueId}`}>
+							<span>Was this answer helpful?</span>
+							<button class="feedback-btn" data-value="yes">Yes</button>
+							<button class="feedback-btn" data-value="no">No</button>
+						</span>
+						)}
 					</div>
+					
 				</Fragment>
 			)}
+			
 		</div>
 	);
 };

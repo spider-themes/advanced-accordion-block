@@ -103,7 +103,12 @@
 		"disableAccordion": {
 			"type": "boolean",
 			"default": false
+		},
+		"feedbackShow": {
+			"type": "string",
+			"default": "show"
 		}
+		
 	},
 	"textdomain": "advanced-accordion-block",
 	"editorScript": "file:./index.js",

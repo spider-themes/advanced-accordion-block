@@ -42,6 +42,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 	const {
 		uniqueId,
 		makeActive,
+		feedbackShow,
 		border,
 		margins,
 		paddings,
@@ -60,17 +61,19 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		linkedAccordion,
 		link,
 		tab,
-		disableAccordion,
+		disableAccordion
 	} = attributes;
 
 	// set unique ID
 	setAttributes({
-		uniqueId: clientId.slice(0, 8),
+		uniqueId: clientId.slice(0, 8)
 	});
+
+	
 
 	return (
 		<Fragment>
-			<InspectorControls>
+			<InspectorControls>				
 				<PanelBody
 					initialOpen={false}
 					title={__('Accordion ID', 'advanced-accordion-block')}
@@ -100,6 +103,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 							}
 						/>
 					)}
+
 					{linkedAccordion !== true && (
 						<ToggleControl
 							label={__(
@@ -327,6 +331,21 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						colors={colors}
 						value={bodyBg}
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
+					/>
+					<SelectControl 
+						label={__('Feedback Visiblity', 'advanced-accordion-block')}
+						options={[
+							{
+								label: __('Show', 'advanced-accordion-block'),
+								value: 'show',
+							},
+							{
+								label: __('Hide', 'advanced-accordion-block'),
+								value: 'hide',
+							},
+						]}
+						onChange={(feedbackShow) => setAttributes({ feedbackShow })}
+						value={feedbackShow}
 					/>
 				</PanelBody>
 			</InspectorControls>
