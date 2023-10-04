@@ -651,19 +651,13 @@ const Save = _ref => {
     class: "feedback-btn",
     "data-value": "no"
   }, "No"))), anchorLinkShow === true && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("script", null, `
-										jQuery( document ).ready(function($) {
-											
-											if ($('.aab__accordion_heading').length) {
-	
-		document.addEventListener('DOMContentLoaded', function (event) {
-			Anchor1 = new AnchorJS();
-			Anchor1.add('.aab__accordion_heading');
-		});
-		console.log('hi');
-	}
-	
-										});
-									`)));
+								
+								document.addEventListener('DOMContentLoaded', function (event) {
+									const anchors = new AnchorJS();
+									anchors.add('.aab__accordion_heading');
+								});
+								
+							`)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Save);

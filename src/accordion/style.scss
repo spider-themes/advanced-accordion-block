@@ -52,14 +52,20 @@
 					top: 2px;
 				}
 				.aab__accordion_title {
-					padding-left: 25px;
+					padding-left: 30px;
 				}
 			}
 			a{
 				text-decoration: none;
 				color: #333333;
 				opacity: 0.5;
-				font-size: 1.2rem !important;
+				font-size: 1.4rem !important;
+				&.anchorjs-link{
+					// font-size: 1.2rem !important;
+					&:after{
+						font-size: 1.4rem !important;
+					}
+				}
 			}
 			&:hover{
 				a{
