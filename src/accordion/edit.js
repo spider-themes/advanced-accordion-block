@@ -37,6 +37,16 @@ const iconPositions = [
 		value: 'aab_right_icon',
 	},
 ];
+const anchorPositions = [
+	{
+		label: 'Left',
+		value: 'aab_left_link',
+	},
+	{
+		label: 'Right',
+		value: 'aab_right_link',
+	},
+];
 
 const Edit = ({ attributes, setAttributes, clientId }) => {
 	const {
@@ -49,6 +59,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		borderRadius,
 		heading,
 		headingTag,
+		anchorLinkShow,
+		anchorPosition,
 		headingColor,
 		showIcon,
 		iconClass,
@@ -61,19 +73,17 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		linkedAccordion,
 		link,
 		tab,
-		disableAccordion
+		disableAccordion,
 	} = attributes;
 
 	// set unique ID
 	setAttributes({
-		uniqueId: clientId.slice(0, 8)
+		uniqueId: clientId.slice(0, 8),
 	});
-
-	
 
 	return (
 		<Fragment>
-			<InspectorControls>				
+			<InspectorControls>
 				<PanelBody
 					initialOpen={false}
 					title={__('Accordion ID', 'advanced-accordion-block')}
@@ -262,6 +272,38 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 					/>
 				</PanelBody>
 				<PanelBody
+					title={__('Anchor Link', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<ToggleControl
+						label={__(
+							'Show Anchor Link',
+							'advanced-accordion-block'
+						)}
+						checked={anchorLinkShow} // Use the state variable here
+						onChange={() =>
+							setAttributes({ anchorLinkShow: !anchorLinkShow })
+						}
+					/>
+					{anchorLinkShow && (
+						<Fragment>
+							<SelectControl
+								label={__(
+									'Anchor Icon Position',
+									'advanced-accordion-block'
+								)}
+								options={anchorPositions}
+								onChange={(anchorPosition) =>
+									setAttributes({
+										anchorPosition,
+									})
+								}
+								value={anchorPosition}
+							/>
+						</Fragment>
+					)}
+				</PanelBody>
+				<PanelBody
 					title={__('Accordion Icon', 'advanced-accordion-block')}
 					initialOpen={false}
 				>
@@ -332,8 +374,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						value={bodyBg}
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
 					/>
-					<SelectControl 
-						label={__('Feedback Visiblity', 'advanced-accordion-block')}
+					<SelectControl
+						label={__(
+							'Feedback Visiblity',
+							'advanced-accordion-block'
+						)}
 						options={[
 							{
 								label: __('Show', 'advanced-accordion-block'),
@@ -344,7 +389,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 								value: 'hide',
 							},
 						]}
-						onChange={(feedbackShow) => setAttributes({ feedbackShow })}
+						onChange={(feedbackShow) =>
+							setAttributes({ feedbackShow: !feedbackShow })
+						}
 						value={feedbackShow}
 					/>
 				</PanelBody>
@@ -386,7 +433,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 								}}
 							>
 								<div
-									className={`aab__accordion_heading ${iconPosition}`}
+									className={`aab__accordion_heading ${iconPosition} ${anchorPosition}`}
 								>
 									<RichText
 										tagName={headingTag}
@@ -402,6 +449,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 												: '#333333',
 										}}
 									/>
+									{anchorLinkShow && (
+										<a href="#">
+											<i className="dashicons-admin-links"></i>
+										</a>
+									)}
 								</div>
 								{showIcon && (
 									<div
@@ -436,7 +488,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 							}}
 						>
 							<div
-								className={`aab__accordion_heading ${iconPosition}`}
+								className={`aab__accordion_heading ${iconPosition} ${anchorPosition}`}
 							>
 								<RichText
 									tagName={headingTag}
@@ -452,6 +504,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 											: '#333333',
 									}}
 								/>
+								{anchorLinkShow && (
+									<a href="#">
+										<i className="dashicons dashicons-admin-links"></i>
+									</a>
+								)}
 							</div>
 							{showIcon && (
 								<div

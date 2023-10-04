@@ -24,11 +24,9 @@
 
 		// header icon position
 		&.aab_right_icon {
-			// justify-content: space-between;
 			flex-direction: row;
 		}
 		&.aab_left_icon {
-			// justify-content: flex-end;
 			flex-direction: row-reverse;
 		}
 
@@ -41,6 +39,32 @@
 			&.aab_left_icon {
 				margin-left: 20px;
 				flex: 1;
+			}
+			&.aab_right_link{
+				display: flex;
+				align-items: center;
+			}
+			&.aab_left_link{
+				position: relative;
+				a{
+					position: absolute;
+					left: 0;
+					top: 2px;
+				}
+				.aab__accordion_title {
+					padding-left: 25px;
+				}
+			}
+			a{
+				text-decoration: none;
+				color: #333333;
+				opacity: 0.5;
+				font-size: 1.2rem !important;
+			}
+			&:hover{
+				a{
+					opacity: 1;
+				}
 			}
 		}
 	}

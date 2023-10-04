@@ -48,6 +48,13 @@ const iconPositions = [{
   label: 'Right',
   value: 'aab_right_icon'
 }];
+const anchorPositions = [{
+  label: 'Left',
+  value: 'aab_left_link'
+}, {
+  label: 'Right',
+  value: 'aab_right_link'
+}];
 
 const Edit = _ref => {
   let {
@@ -65,6 +72,8 @@ const Edit = _ref => {
     borderRadius,
     heading,
     headingTag,
+    anchorLinkShow,
+    anchorPosition,
     headingColor,
     showIcon,
     iconClass,
@@ -206,6 +215,23 @@ const Edit = _ref => {
     }),
     value: headingTag
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: __('Anchor Link', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: __('Show Anchor Link', 'advanced-accordion-block'),
+    checked: anchorLinkShow // Use the state variable here
+    ,
+    onChange: () => setAttributes({
+      anchorLinkShow: !anchorLinkShow
+    })
+  }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: __('Anchor Icon Position', 'advanced-accordion-block'),
+    options: anchorPositions,
+    onChange: anchorPosition => setAttributes({
+      anchorPosition
+    }),
+    value: anchorPosition
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: __('Accordion Icon', 'advanced-accordion-block'),
     initialOpen: false
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
@@ -269,7 +295,7 @@ const Edit = _ref => {
       value: 'hide'
     }],
     onChange: feedbackShow => setAttributes({
-      feedbackShow
+      feedbackShow: !feedbackShow
     }),
     value: feedbackShow
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
@@ -295,7 +321,7 @@ const Edit = _ref => {
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `aab__accordion_heading ${iconPosition}`
+    className: `aab__accordion_heading ${iconPosition} ${anchorPosition}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: headingTag,
     value: heading,
@@ -307,7 +333,11 @@ const Edit = _ref => {
       margin: 0,
       color: headingColor ? headingColor : '#333333'
     }
-  })), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
+    href: "#"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
+    className: "dashicons-admin-links"
+  }))), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `aab__accordion_icon`,
     style: {
       color: iconColor ? iconColor : '#333333',
@@ -323,7 +353,7 @@ const Edit = _ref => {
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `aab__accordion_heading ${iconPosition}`
+    className: `aab__accordion_heading ${iconPosition} ${anchorPosition}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: headingTag,
     value: heading,
@@ -335,7 +365,11 @@ const Edit = _ref => {
       margin: 0,
       color: headingColor ? headingColor : '#333333'
     }
-  })), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
+    href: "#"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
+    className: "dashicons dashicons-admin-links"
+  }))), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `aab__accordion_icon`,
     style: {
       color: iconColor ? iconColor : '#333333',
@@ -496,6 +530,8 @@ const Save = _ref => {
     heading,
     headingTag,
     headingColor,
+    anchorPosition,
+    anchorLinkShow,
     showIcon,
     iconClass,
     iconPosition,
@@ -554,7 +590,7 @@ const Save = _ref => {
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `aab__accordion_heading ${iconPosition}`
+    className: `aab__accordion_heading ${iconPosition} ${anchorPosition || ''}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
     className: "aab__accordion_title",
     tagName: headingTag,
@@ -580,7 +616,7 @@ const Save = _ref => {
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `aab__accordion_heading ${iconPosition}`
+    className: `aab__accordion_heading ${iconPosition} ${anchorPosition || ''}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
     className: "aab__accordion_title",
     tagName: headingTag,
@@ -614,7 +650,20 @@ const Save = _ref => {
   }, "Yes"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", {
     class: "feedback-btn",
     "data-value": "no"
-  }, "No")))));
+  }, "No"))), anchorLinkShow === true && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("script", null, `
+										jQuery( document ).ready(function($) {
+											
+											if ($('.aab__accordion_heading').length) {
+	
+		document.addEventListener('DOMContentLoaded', function (event) {
+			Anchor1 = new AnchorJS();
+			Anchor1.add('.aab__accordion_heading');
+		});
+		console.log('hi');
+	}
+	
+										});
+									`)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Save);
@@ -786,7 +835,7 @@ function _extends() {
   \**********************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"aab/accordion-block","version":"0.1.0","title":"Separate Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"uniqueId":{"type":"string"},"border":{"type":"object","default":{"width":"1px","color":"#cccccc","style":"solid"}},"paddings":{"type":"object","default":{"top":"10px","left":"15px","right":"15px","bottom":"10px"}},"margins":{"type":"object","default":{"top":"0px","bottom":"15px"}},"borderRadius":{"type":"number","default":0},"heading":{"type":"string","default":"Accordion Heading"},"headingTag":{"type":"string","default":"h4"},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"showIcon":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"id":{"type":"string"},"linkedAccordion":{"type":"boolean","default":false},"link":{"type":"string","default":"#"},"tab":{"type":"boolean","default":false},"disableAccordion":{"type":"boolean","default":false},"feedbackShow":{"type":"string","default":"show"}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"aab/accordion-block","version":"0.1.0","title":"Separate Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"uniqueId":{"type":"string"},"border":{"type":"object","default":{"width":"1px","color":"#cccccc","style":"solid"}},"paddings":{"type":"object","default":{"top":"10px","left":"15px","right":"15px","bottom":"10px"}},"margins":{"type":"object","default":{"top":"0px","bottom":"15px"}},"borderRadius":{"type":"number","default":0},"heading":{"type":"string","default":"Accordion Heading"},"headingTag":{"type":"string","default":"h4"},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"showIcon":{"type":"boolean","default":true},"anchorLinkShow":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"id":{"type":"string"},"linkedAccordion":{"type":"boolean","default":false},"link":{"type":"string","default":"#"},"tab":{"type":"boolean","default":false},"disableAccordion":{"type":"boolean","default":false},"feedbackShow":{"type":"string","default":"show"},"anchorPosition":{"type":"string","default":"aab_right_link"}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

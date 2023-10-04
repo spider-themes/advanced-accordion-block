@@ -64,6 +64,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"anchorLinkShow":{
+			"type": "boolean",
+			"default": true
+		},
 		"iconClass": {
 			"type": "string",
 			"default": "plus-alt2"
@@ -107,8 +111,11 @@
 		"feedbackShow": {
 			"type": "string",
 			"default": "show"
+		},
+		"anchorPosition": {
+			"type": "string",
+			"default": "aab_right_link"
 		}
-		
 	},
 	"textdomain": "advanced-accordion-block",
 	"editorScript": "file:./index.js",

@@ -38,6 +38,30 @@
   margin-left: 20px;
   flex: 1;
 }
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading.aab_right_link {
+  display: flex;
+  align-items: center;
+}
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading.aab_left_link {
+  position: relative;
+}
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading.aab_left_link a {
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading.aab_left_link .aab__accordion_title {
+  padding-left: 25px;
+}
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading a {
+  text-decoration: none;
+  color: #333333;
+  opacity: 0.5;
+  font-size: 1.2rem !important;
+}
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading:hover a {
+  opacity: 1;
+}
 .wp-block-aab-accordion-block .collapse-icon span {
   display: block;
 }

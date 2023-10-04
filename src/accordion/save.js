@@ -14,6 +14,8 @@ const Save = ({ attributes }) => {
 		heading,
 		headingTag,
 		headingColor,
+		anchorPosition,
+		anchorLinkShow,
 		showIcon,
 		iconClass,
 		iconPosition,
@@ -26,16 +28,15 @@ const Save = ({ attributes }) => {
 		link,
 		tab,
 		disableAccordion,
-		feedbackShow
+		feedbackShow,
 	} = attributes;
 
 	const activeClass = makeActive
 		? `aab__accordion_body--show active__accordion_${uniqueId}`
 		: '';
-
 	// initial accordion stage
 	let currentIconClass;
-	
+
 	if (makeActive === false) {
 		currentIconClass = iconClass;
 	} else {
@@ -89,7 +90,9 @@ const Save = ({ attributes }) => {
 							}}
 						>
 							<div
-								className={`aab__accordion_heading ${iconPosition}`}
+								className={`aab__accordion_heading ${iconPosition} ${
+									anchorPosition || ''
+								}`}
 							>
 								<RichText.Content
 									className="aab__accordion_title"
@@ -137,7 +140,9 @@ const Save = ({ attributes }) => {
 						}}
 					>
 						<div
-							className={`aab__accordion_heading ${iconPosition}`}
+							className={`aab__accordion_heading ${iconPosition} ${
+								anchorPosition || ''
+							}`}
 						>
 							<RichText.Content
 								className="aab__accordion_title"
@@ -178,17 +183,40 @@ const Save = ({ attributes }) => {
 					>
 						<InnerBlocks.Content />
 						{feedbackShow == 'show' && (
-						<span className={'feedback-btn-wrap'} data-id={`${uniqueId}`}>
-							<span>Was this answer helpful?</span>
-							<button class="feedback-btn" data-value="yes">Yes</button>
-							<button class="feedback-btn" data-value="no">No</button>
-						</span>
+							<span
+								className={'feedback-btn-wrap'}
+								data-id={`${uniqueId}`}
+							>
+								<span>Was this answer helpful?</span>
+								<button class="feedback-btn" data-value="yes">
+									Yes
+								</button>
+								<button class="feedback-btn" data-value="no">
+									No
+								</button>
+							</span>
 						)}
 					</div>
-					
+					{anchorLinkShow === true && (
+						<script>
+							{`
+										jQuery( document ).ready(function($) {
+											
+											if ($('.aab__accordion_heading').length) {
+	
+		document.addEventListener('DOMContentLoaded', function (event) {
+			Anchor1 = new AnchorJS();
+			Anchor1.add('.aab__accordion_heading');
+		});
+		console.log('hi');
+	}
+	
+										});
+									`}
+						</script>
+					)}
 				</Fragment>
 			)}
-			
 		</div>
 	);
 };

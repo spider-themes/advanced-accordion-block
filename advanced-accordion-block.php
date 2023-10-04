@@ -184,6 +184,7 @@ final class AAGB_BLOCKS_CLASS {
 			wp_enqueue_style( 'dashicons' );
 		}
 		// enqueue JS
+		wp_enqueue_script( 'aagb-anchor-js', AAGB_LIB_URL . 'js/anchor.js', array('jquery'), '', true );
 		wp_enqueue_script( 'aagb-separate-accordion', AAGB_LIB_URL . 'js/separate-accordion.js', array('jquery'), AAGB_VERSION, true );
 		wp_enqueue_script( 'aagb-accordion-group', AAGB_LIB_URL . 'js/group-accordion.js', array('jquery'), AAGB_VERSION, true );
 	}
