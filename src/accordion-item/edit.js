@@ -246,6 +246,7 @@ const Edit = ({ attributes, setAttributes }) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
+
 			<div
 				{...useBlockProps({
 					className: `aagb__accordion_container ${

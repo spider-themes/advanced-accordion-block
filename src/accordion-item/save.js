@@ -41,67 +41,69 @@ const Save = ({ attributes }) => {
 	}
 
 	return (
-		<div
-			{...useBlockProps.save({
-				className: `aagb__accordion_container ${
-					makeActive ? 'aagb__accordion_active' : ''
-				}`,
-			})}
-			style={{
-				border: `${border.width} ${border.style} ${border.color}`,
-				marginTop: `${margins.top}`,
-				marginBottom: `${margins.bottom}`,
-				borderRadius: `${borderRadius}px`,
-			}}
-		>
+		<React.Fragment>
 			<div
-				className={`aagb__accordion_head ${iconPosition}`}
-				data-active={makeActive}
+				{...useBlockProps.save({
+					className: `aagb__accordion_container panel ${
+						makeActive ? 'aagb__accordion_active' : ''
+					}`,
+				})}
 				style={{
-					color: headingColor ? headingColor : '#333333',
-					backgroundColor: headerBg ? headerBg : 'transparent',
-					padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
+					border: `${border.width} ${border.style} ${border.color}`,
+					marginTop: `${margins.top}`,
+					marginBottom: `${margins.bottom}`,
+					borderRadius: `${borderRadius}px`,
 				}}
 			>
-				<div className={`aagb__accordion_heading ${iconPosition}`}>
-					<RichText.Content
-						className="aagb__accordion_title"
-						tagName={headingTag}
-						value={heading}
-						style={{
-							margin: 0,
-							color: headingColor ? headingColor : '#333333',
-						}}
-					/>
-				</div>
-				{showIcon && (
-					<div
-						className={`aagb__accordion_icon`}
-						style={{
-							color: iconColor ? iconColor : '#333333',
-							backgroundColor: iconBackground
-								? iconBackground
-								: 'transparent',
-						}}
-					>
-						<span
-							className={`aagb__icon dashicons dashicons-${currentIconClass}`}
-						></span>
+				<div
+					className={`aagb__accordion_head ${iconPosition}`}
+					data-active={makeActive}
+					style={{
+						color: headingColor ? headingColor : '#333333',
+						backgroundColor: headerBg ? headerBg : 'transparent',
+						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
+					}}
+				>
+					<div className={`aagb__accordion_heading ${iconPosition}`}>
+						<RichText.Content
+							className="aagb__accordion_title"
+							tagName={headingTag}
+							value={heading}
+							style={{
+								margin: 0,
+								color: headingColor ? headingColor : '#333333',
+							}}
+						/>
 					</div>
-				)}
+					{showIcon && (
+						<div
+							className={`aagb__accordion_icon`}
+							style={{
+								color: iconColor ? iconColor : '#333333',
+								backgroundColor: iconBackground
+									? iconBackground
+									: 'transparent',
+							}}
+						>
+							<span
+								className={`aagb__icon dashicons dashicons-${currentIconClass}`}
+							></span>
+						</div>
+					)}
+				</div>
+				<div
+					className={`aagb__accordion_body ${activeClass}`}
+					role="region"
+					style={{
+						backgroundColor: bodyBg ? bodyBg : 'transparent',
+						borderTop: `${border.width} ${border.style} ${border.color}`,
+						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
+					}}
+				>
+					<InnerBlocks.Content />
+				</div>
 			</div>
-			<div
-				className={`aagb__accordion_body ${activeClass}`}
-				role="region"
-				style={{
-					backgroundColor: bodyBg ? bodyBg : 'transparent',
-					borderTop: `${border.width} ${border.style} ${border.color}`,
-					padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
-				}}
-			>
-				<InnerBlocks.Content />
-			</div>
-		</div>
+		</React.Fragment>
 	);
 };
 export default Save;

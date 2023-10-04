@@ -144,9 +144,75 @@ const Save = _ref => {
   const {
     uniqueId
   } = attributes;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: `aagb_accordion_${uniqueId}`
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "form-group",
+    id: "filter-form"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    id: "filter",
+    type: "text",
+    className: "form-control noEnterSubmit",
+    placeholder: "Search for FAQ"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("small", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    id: "filter-help-block",
+    className: "help-block"
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+    className: `searchable aagb_accordion_${uniqueId}`
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("script", null, `
+					
+					jQuery(document).ready(function($) {
+
+						(function($) {
+						  
+						  var $form = $('#filter-form');
+						  var $helpBlock = $("#filter-help-block");
+						  
+						  //Watch for user typing to refresh the filter
+						  $('#filter').keyup(function() {
+							var filter = $(this).val();
+							$form.removeClass("has-success has-error");
+							
+							if (filter == "") {
+							  $helpBlock.text("No filter applied.")
+							  $('.searchable .panel').show();
+							} else {
+							  //Close any open panels
+							  $('.collapse.in').removeClass('in');
+							  
+							  //Hide questions, will show result later
+							  $('.searchable .panel').hide();
+					  
+							  var regex = new RegExp(filter, 'i');
+					  
+							  var filterResult = $('.searchable .panel').filter(function() {
+								return regex.test($(this).text());
+							  })
+					  
+							  if (filterResult) {
+								if (filterResult.length != 0) {
+								  $form.addClass("has-success");
+								  $helpBlock.text(filterResult.length + " question(s) found.");
+								  filterResult.show();
+								} else {
+								  $form.addClass("has-error").removeClass("has-success");
+								  $helpBlock.text("No questions found.");
+								}
+					  
+							  } else {
+								$form.addClass("has-error").removeClass("has-success");
+								$helpBlock.text("No questions found.");
+							  }
+							}
+						  })
+					  
+						}($));
+
+						$('.noEnterSubmit').keypress(function(e) {
+							if (e.which == 13) e.preventDefault();
+						  });
+					  });
+
+					  
+				`));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Save);

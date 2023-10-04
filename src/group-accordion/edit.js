@@ -47,6 +47,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
+
 			<div
 				{...useBlockProps({
 					className: `aagb_accordion_${uniqueId}`,
