@@ -200,12 +200,14 @@ const Save = ({ attributes }) => {
 					{anchorLinkShow === true && (
 						<script>
 							{`
-								
-								document.addEventListener('DOMContentLoaded', function (event) {
-									const anchors = new AnchorJS();
-									anchors.add('.aab__accordion_heading');
+								jQuery(document).ready(function($) {
+									if ($('.aab__accordion_heading').length) {
+										$(document).ready(function() {
+											var Anchor1 = new AnchorJS();
+											Anchor1.add('.aab__accordion_heading');
+										});
+									}
 								});
-								
 							`}
 						</script>
 					)}
