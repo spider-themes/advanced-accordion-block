@@ -18,9 +18,11 @@ const Save = ({ attributes }) => {
 		iconBackground,
 		headerBg,
 		bodyBg,
+		buttonShow,
 	} = attributes;
 
 	const activeClass = makeActive ? `aagb__accordion_body--show` : '';
+	// set unique ID
 
 	// initial accordion stage
 	let currentIconClass;
@@ -100,7 +102,20 @@ const Save = ({ attributes }) => {
 						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 					}}
 				>
-					<InnerBlocks.Content />
+					<div className="aagb__accordion_component">
+						<InnerBlocks.Content />
+					</div>
+					{buttonShow && (
+						<>
+							<div className="ezd_overlay"></div>
+							<button
+								id="ezd_button_toggle"
+								className="ezd_button_toggle"
+							>
+								Read More
+							</button>
+						</>
+					)}
 				</div>
 			</div>
 		</React.Fragment>

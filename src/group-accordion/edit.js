@@ -3,6 +3,7 @@
 import './editor.scss';
 import {
 	PanelBody,
+	ToggleControl,
 	__experimentalBorderControl as BorderControl,
 } from '@wordpress/components';
 
@@ -16,7 +17,7 @@ import { __ } from '@wordpress/i18n';
 
 import { Fragment } from '@wordpress/element';
 const Edit = ({ attributes, setAttributes, clientId }) => {
-	const { uniqueId, activeAccordionBorder } = attributes;
+	const { uniqueId, activeAccordionBorder, searchShow } = attributes;
 
 	// set unique ID
 	setAttributes({
@@ -46,6 +47,21 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						withSlider={true}
 					/>
 				</PanelBody>
+				<PanelBody
+					title={__('Accordion Search', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<ToggleControl
+						label={__(
+							'Show Accordion Search',
+							'advanced-accordion-block'
+						)}
+						checked={searchShow} // Use the state variable here
+						onChange={() =>
+							setAttributes({ searchShow: !searchShow })
+						}
+					/>
+				</PanelBody>
 			</InspectorControls>
 
 			<div
@@ -53,6 +69,23 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 					className: `aagb_accordion_${uniqueId}`,
 				})}
 			>
+				{searchShow && (
+					<div className="ezd-form-group" id="ezd-search-form">
+						<input
+							id="ezd-search-id"
+							type="text"
+							className="form-control noEnterSubmit"
+							placeholder="Search for FAQ"
+						/>
+						<small>
+							<span
+								id="ezd-search-help-block"
+								className="help-block"
+							></span>
+						</small>
+					</div>
+				)}
+
 				<InnerBlocks
 					allowedBlocks={['aab/accordion-item']}
 					template={[['aab/accordion-item']]}

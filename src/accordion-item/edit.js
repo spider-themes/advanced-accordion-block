@@ -54,6 +54,7 @@ const Edit = ({ attributes, setAttributes }) => {
 		iconBackground,
 		headerBg,
 		bodyBg,
+		buttonShow,
 	} = attributes;
 	return (
 		<Fragment>
@@ -244,6 +245,16 @@ const Edit = ({ attributes, setAttributes }) => {
 						value={bodyBg}
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
 					/>
+					<ToggleControl
+						label={__(
+							'Button Swither Show/Hide',
+							'advanced-accordion-block'
+						)}
+						checked={buttonShow} // Use the state variable here
+						onChange={() =>
+							setAttributes({ buttonShow: !buttonShow })
+						}
+					/>
 				</PanelBody>
 			</InspectorControls>
 
@@ -319,6 +330,14 @@ const Edit = ({ attributes, setAttributes }) => {
 							],
 						]}
 					/>
+					{buttonShow && (
+						<button
+							id="ezd_button_toggle"
+							className="ezd_button_toggle"
+						>
+							Read More
+						</button>
+					)}
 				</div>
 			</div>
 		</Fragment>

@@ -1,20 +1,27 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 const Save = ({ attributes }) => {
-	const { uniqueId } = attributes;
+	const { uniqueId, searchShow } = attributes;
 
 	return (
 		<>
-			<div className="form-group" id="filter-form">
-				<input
-					id="filter"
-					type="text"
-					className="form-control noEnterSubmit"
-					placeholder="Search for FAQ"
-				/>
-				<small>
-					<span id="filter-help-block" className="help-block"></span>
-				</small>
-			</div>
+			{searchShow && (
+				<div className="ezd_form_inner" id="ezd-search-form">
+					<div className="ezd_form_group">
+						<input
+							id="ezd-search-id"
+							type="text"
+							className="ezd_form_control noEnterSubmit"
+							placeholder="Search for FAQ"
+						/>
+					</div>
+					<small>
+						<span
+							id="ezd-search-help-block"
+							className="help-block"
+						></span>
+					</small>
+				</div>
+			)}
 			<div
 				{...useBlockProps.save({
 					className: `searchable aagb_accordion_${uniqueId}`,
@@ -22,24 +29,24 @@ const Save = ({ attributes }) => {
 			>
 				<InnerBlocks.Content />
 			</div>
-
-			<script>
-				{`
+			{searchShow === true && (
+				<script>
+					{`
 					
 					jQuery(document).ready(function($) {
 
 						(function($) {
 						  
-						  var $form = $('#filter-form');
-						  var $helpBlock = $("#filter-help-block");
+						  var $form = $('#ezd-search-form');
+						  var $helpBlock = $("#ezd-search-help-block");
 						  
 						  //Watch for user typing to refresh the filter
-						  $('#filter').keyup(function() {
+						  $('#ezd-search-id').keyup(function() {
 							var filter = $(this).val();
 							$form.removeClass("has-success has-error");
 							
 							if (filter == "") {
-							  $helpBlock.text("No filter applied.")
+							  $helpBlock.text("Nothing found")
 							  $('.searchable .panel').show();
 							} else {
 							  //Close any open panels
@@ -76,11 +83,29 @@ const Save = ({ attributes }) => {
 						$('.noEnterSubmit').keypress(function(e) {
 							if (e.which == 13) e.preventDefault();
 						  });
-					  });
 
-					  
+						  $(".ezd_button_toggle").each(function(i) {
+							$(this).click(function() {
+								var buttonText = $(this).text();
+								var accordionContent = $(this).closest(".aagb__accordion_container").find(".aagb__accordion_component");
+								var overlay = $(this).closest(".aagb__accordion_container").find(".ezd_overlay");
+								if (buttonText === "Read More") {
+									// Change button text and show content
+									$(this).text("Read Less");
+									accordionContent.addClass('collapse_expand');
+									overlay.addClass('collapse_expand');
+								} else {
+									// Change button text and hide content
+									$(this).text("Read More");
+									accordionContent.removeClass('collapse_expand');
+									overlay.removeClass('collapse_expand');
+								}
+							});
+						});
+					});  
 				`}
-			</script>
+				</script>
+			)}
 		</>
 	);
 };

@@ -82,6 +82,13 @@
 		"makeActive": {
 			"type": "boolean",
 			"default": false
+		},
+		"uniqueId": {
+			"type": "string"
+		},
+		"buttonShow":{
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "advanced-accordion-block",

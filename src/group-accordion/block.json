@@ -20,6 +20,10 @@
 				"color": "#77b5f7",
 				"style": "solid"
 			}
+		},
+		"searchShow":{
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "advanced-accordion-block",
