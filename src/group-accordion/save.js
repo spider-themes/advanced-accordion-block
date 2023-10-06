@@ -1,9 +1,10 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { Fragment } from '@wordpress/element';
 const Save = ({ attributes }) => {
-	const { uniqueId, searchShow } = attributes;
+	const { uniqueId, searchShow, showAllbtn } = attributes;
 
 	return (
-		<>
+		<Fragment>
 			{searchShow && (
 				<div className="ezd_form_inner" id="ezd-search-form">
 					<div className="ezd_form_group">
@@ -14,12 +15,20 @@ const Save = ({ attributes }) => {
 							placeholder="Search for FAQ"
 						/>
 					</div>
-					<small>
-						<span
-							id="ezd-search-help-block"
-							className="help-block"
-						></span>
-					</small>
+					<span
+						id="ezd-search-help-block"
+						className="help-block"
+					></span>
+				</div>
+			)}
+			{showAllbtn && (
+				<div className="accordion_wrapper_btn">
+					<a href="#" className="content-accordion__close-all">
+						Close all
+					</a>
+					<a href="#" className="content-accordion__show-all">
+						Show all
+					</a>
 				</div>
 			)}
 			<div
@@ -29,13 +38,13 @@ const Save = ({ attributes }) => {
 			>
 				<InnerBlocks.Content />
 			</div>
-			{searchShow === true && (
+			{/* {searchShow === true && (
 				<script>
 					{`
 					
 					jQuery(document).ready(function($) {
 
-						(function($) {
+						// (function($) {
 						  
 						  var $form = $('#ezd-search-form');
 						  var $helpBlock = $("#ezd-search-help-block");
@@ -78,35 +87,12 @@ const Save = ({ attributes }) => {
 							}
 						  })
 					  
-						}($));
-
-						$('.noEnterSubmit').keypress(function(e) {
-							if (e.which == 13) e.preventDefault();
-						  });
-
-						  $(".ezd_button_toggle").each(function(i) {
-							$(this).click(function() {
-								var buttonText = $(this).text();
-								var accordionContent = $(this).closest(".aagb__accordion_container").find(".aagb__accordion_component");
-								var overlay = $(this).closest(".aagb__accordion_container").find(".ezd_overlay");
-								if (buttonText === "Read More") {
-									// Change button text and show content
-									$(this).text("Read Less");
-									accordionContent.addClass('collapse_expand');
-									overlay.addClass('collapse_expand');
-								} else {
-									// Change button text and hide content
-									$(this).text("Read More");
-									accordionContent.removeClass('collapse_expand');
-									overlay.removeClass('collapse_expand');
-								}
-							});
-						});
+						// }($));
 					});  
 				`}
 				</script>
-			)}
-		</>
+			)} */}
+		</Fragment>
 	);
 };
 export default Save;

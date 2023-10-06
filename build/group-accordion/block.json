@@ -24,6 +24,10 @@
 		"searchShow":{
 			"type": "boolean",
 			"default": true
+		},
+		"showAllbtn":{
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "advanced-accordion-block",

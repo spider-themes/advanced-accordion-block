@@ -72,7 +72,8 @@ const Edit = _ref => {
   const {
     uniqueId,
     activeAccordionBorder,
-    searchShow
+    searchShow,
+    showAllbtn
   } = attributes; // set unique ID
 
   setAttributes({
@@ -99,20 +100,40 @@ const Edit = _ref => {
     onChange: () => setAttributes({
       searchShow: !searchShow
     })
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Open All / Close All Button', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Open All / Close All', 'advanced-accordion-block'),
+    checked: showAllbtn // Use the state variable here
+    ,
+    onChange: () => setAttributes({
+      showAllbtn: !showAllbtn
+    })
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: `aagb_accordion_${uniqueId}`
   }), searchShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "ezd-form-group",
+    className: "ezd_form_inner",
     id: "ezd-search-form"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ezd_form_group"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     id: "ezd-search-id",
     type: "text",
-    className: "form-control noEnterSubmit",
+    className: "ezd_form_control noEnterSubmit",
     placeholder: "Search for FAQ"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("small", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     id: "ezd-search-help-block",
     className: "help-block"
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
+  })), showAllbtn && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "accordion_wrapper_btn"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: "#",
+    className: "content-accordion__close-all"
+  }, "Close all"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: "#",
+    className: "content-accordion__show-all"
+  }, "Show all")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
     allowedBlocks: ['aab/accordion-item'],
     template: [['aab/accordion-item']]
   })));
@@ -159,13 +180,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const Save = _ref => {
   let {
     attributes
   } = _ref;
   const {
     uniqueId,
-    searchShow
+    searchShow,
+    showAllbtn
   } = attributes;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, searchShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ezd_form_inner",
@@ -177,84 +200,20 @@ const Save = _ref => {
     type: "text",
     className: "ezd_form_control noEnterSubmit",
     placeholder: "Search for FAQ"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("small", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     id: "ezd-search-help-block",
     className: "help-block"
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+  })), showAllbtn && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "accordion_wrapper_btn"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: "#",
+    className: "content-accordion__close-all"
+  }, "Close all"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: "#",
+    className: "content-accordion__show-all"
+  }, "Show all")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: `searchable aagb_accordion_${uniqueId}`
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)), searchShow === true && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("script", null, `
-					
-					jQuery(document).ready(function($) {
-
-						(function($) {
-						  
-						  var $form = $('#ezd-search-form');
-						  var $helpBlock = $("#ezd-search-help-block");
-						  
-						  //Watch for user typing to refresh the filter
-						  $('#ezd-search-id').keyup(function() {
-							var filter = $(this).val();
-							$form.removeClass("has-success has-error");
-							
-							if (filter == "") {
-							  $helpBlock.text("Nothing found")
-							  $('.searchable .panel').show();
-							} else {
-							  //Close any open panels
-							  $('.collapse.in').removeClass('in');
-							  
-							  //Hide questions, will show result later
-							  $('.searchable .panel').hide();
-					  
-							  var regex = new RegExp(filter, 'i');
-					  
-							  var filterResult = $('.searchable .panel').filter(function() {
-								return regex.test($(this).text());
-							  })
-					  
-							  if (filterResult) {
-								if (filterResult.length != 0) {
-								  $form.addClass("has-success");
-								  $helpBlock.text(filterResult.length + " question(s) found.");
-								  filterResult.show();
-								} else {
-								  $form.addClass("has-error").removeClass("has-success");
-								  $helpBlock.text("No questions found.");
-								}
-					  
-							  } else {
-								$form.addClass("has-error").removeClass("has-success");
-								$helpBlock.text("No questions found.");
-							  }
-							}
-						  })
-					  
-						}($));
-
-						$('.noEnterSubmit').keypress(function(e) {
-							if (e.which == 13) e.preventDefault();
-						  });
-
-						  $(".ezd_button_toggle").each(function(i) {
-							$(this).click(function() {
-								var buttonText = $(this).text();
-								var accordionContent = $(this).closest(".aagb__accordion_container").find(".aagb__accordion_component");
-								var overlay = $(this).closest(".aagb__accordion_container").find(".ezd_overlay");
-								if (buttonText === "Read More") {
-									// Change button text and show content
-									$(this).text("Read Less");
-									accordionContent.addClass('collapse_expand');
-									overlay.addClass('collapse_expand');
-								} else {
-									// Change button text and hide content
-									$(this).text("Read More");
-									accordionContent.removeClass('collapse_expand');
-									overlay.removeClass('collapse_expand');
-								}
-							});
-						});
-					});  
-				`));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Save);
@@ -329,7 +288,7 @@ module.exports = window["wp"]["i18n"];
   \****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"aab/group-accordion","version":"0.1.0","title":"Group Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"attributes":{"uniqueId":{"type":"string"},"activeAccordionBorder":{"type":"object","default":{"width":"1px","color":"#77b5f7","style":"solid"}},"searchShow":{"type":"boolean","default":true}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"aab/group-accordion","version":"0.1.0","title":"Group Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"attributes":{"uniqueId":{"type":"string"},"activeAccordionBorder":{"type":"object","default":{"width":"1px","color":"#77b5f7","style":"solid"}},"searchShow":{"type":"boolean","default":true},"showAllbtn":{"type":"boolean","default":true}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

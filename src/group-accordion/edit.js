@@ -4,6 +4,8 @@ import './editor.scss';
 import {
 	PanelBody,
 	ToggleControl,
+	// Button,
+	// ButtonGroup,
 	__experimentalBorderControl as BorderControl,
 } from '@wordpress/components';
 
@@ -17,7 +19,8 @@ import { __ } from '@wordpress/i18n';
 
 import { Fragment } from '@wordpress/element';
 const Edit = ({ attributes, setAttributes, clientId }) => {
-	const { uniqueId, activeAccordionBorder, searchShow } = attributes;
+	const { uniqueId, activeAccordionBorder, searchShow, showAllbtn } =
+		attributes;
 
 	// set unique ID
 	setAttributes({
@@ -62,6 +65,42 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						}
 					/>
 				</PanelBody>
+				<PanelBody
+					title={__(
+						'Open All / Close All Button',
+						'advanced-accordion-block'
+					)}
+					initialOpen={false}
+				>
+					<ToggleControl
+						label={__(
+							'Open All / Close All',
+							'advanced-accordion-block'
+						)}
+						checked={showAllbtn} // Use the state variable here
+						onChange={() =>
+							setAttributes({ showAllbtn: !showAllbtn })
+						}
+					/>
+				</PanelBody>
+				{/* <PanelBody
+					title={__('Activator Event', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<ButtonGroup>
+						<Button
+							variant="primary"
+							onClick={() =>
+								jQuery('.aagb__accordion_container  ').addClass(
+									'active'
+								)
+							}
+						>
+							Button 1
+						</Button>
+						<Button variant="primary">Button 2</Button>
+					</ButtonGroup>
+				</PanelBody> */}
 			</InspectorControls>
 
 			<div
@@ -70,19 +109,29 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				})}
 			>
 				{searchShow && (
-					<div className="ezd-form-group" id="ezd-search-form">
-						<input
-							id="ezd-search-id"
-							type="text"
-							className="form-control noEnterSubmit"
-							placeholder="Search for FAQ"
-						/>
-						<small>
-							<span
-								id="ezd-search-help-block"
-								className="help-block"
-							></span>
-						</small>
+					<div className="ezd_form_inner" id="ezd-search-form">
+						<div className="ezd_form_group">
+							<input
+								id="ezd-search-id"
+								type="text"
+								className="ezd_form_control noEnterSubmit"
+								placeholder="Search for FAQ"
+							/>
+						</div>
+						<span
+							id="ezd-search-help-block"
+							className="help-block"
+						></span>
+					</div>
+				)}
+				{showAllbtn && (
+					<div className="accordion_wrapper_btn">
+						<a href="#" className="content-accordion__close-all">
+							Close all
+						</a>
+						<a href="#" className="content-accordion__show-all">
+							Show all
+						</a>
 					</div>
 				)}
 

@@ -88,7 +88,7 @@
 		},
 		"buttonShow":{
 			"type": "boolean",
-			"default": true
+			"default": false
 		}
 	},
 	"textdomain": "advanced-accordion-block",
