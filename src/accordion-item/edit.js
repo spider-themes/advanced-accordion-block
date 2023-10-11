@@ -36,6 +36,16 @@ const iconPositions = [
 		value: 'aagb_right_icon',
 	},
 ];
+const anchorPositions = [
+	{
+		label: 'Left',
+		value: 'aagb_left_link',
+	},
+	{
+		label: 'Right',
+		value: 'aagb_right_link',
+	},
+];
 
 const Edit = ({ attributes, setAttributes }) => {
 	const {
@@ -55,7 +65,20 @@ const Edit = ({ attributes, setAttributes }) => {
 		headerBg,
 		bodyBg,
 		buttonShow,
+		anchorLinkShow,
+		anchorPosition,
+		contentCount,
 	} = attributes;
+	// Generate the template for InnerBlocks based on contentCount
+	const innerBlocksTemplate = Array.from(
+		{ length: contentCount },
+		(_, index) => [
+			'core/paragraph',
+			{
+				content: `Content ${index + 1}`,
+			},
+		]
+	);
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -175,6 +198,38 @@ const Edit = ({ attributes, setAttributes }) => {
 					/>
 				</PanelBody>
 				<PanelBody
+					title={__('Anchor Link', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<ToggleControl
+						label={__(
+							'Show Anchor Link',
+							'advanced-accordion-block'
+						)}
+						checked={anchorLinkShow} // Use the state variable here
+						onChange={() =>
+							setAttributes({ anchorLinkShow: !anchorLinkShow })
+						}
+					/>
+					{anchorLinkShow && (
+						<Fragment>
+							<SelectControl
+								label={__(
+									'Anchor Icon Position',
+									'advanced-accordion-block'
+								)}
+								options={anchorPositions}
+								onChange={(anchorPosition) =>
+									setAttributes({
+										anchorPosition,
+									})
+								}
+								value={anchorPosition}
+							/>
+						</Fragment>
+					)}
+				</PanelBody>
+				<PanelBody
 					title={__('Accordion Icon', 'advanced-accordion-block')}
 					initialOpen={false}
 				>
@@ -256,6 +311,20 @@ const Edit = ({ attributes, setAttributes }) => {
 						}
 					/>
 				</PanelBody>
+				<PanelBody
+					title={__('Content Options', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<RangeControl
+						label={__('Content Count', 'advanced-accordion-block')}
+						value={contentCount}
+						onChange={(value) =>
+							setAttributes({ contentCount: value })
+						}
+						min={1}
+						max={220} // Set the maximum count according to your requirement
+					/>
+				</PanelBody>
 			</InspectorControls>
 
 			<div
@@ -279,7 +348,11 @@ const Edit = ({ attributes, setAttributes }) => {
 						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 					}}
 				>
-					<div className={`aagb__accordion_heading ${iconPosition}`}>
+					<div
+						className={`aagb__accordion_heading ${iconPosition} ${
+							anchorPosition || ''
+						}`}
+					>
 						<RichText
 							tagName={headingTag}
 							value={heading}
@@ -290,6 +363,11 @@ const Edit = ({ attributes, setAttributes }) => {
 								color: headingColor ? headingColor : '#333333',
 							}}
 						/>
+						{anchorLinkShow && (
+							<a href="#">
+								<i className="dashicons dashicons-admin-links"></i>
+							</a>
+						)}
 					</div>
 					{showIcon && (
 						<div
@@ -320,16 +398,9 @@ const Edit = ({ attributes, setAttributes }) => {
 				>
 					<InnerBlocks
 						allowedBlocks={true}
-						template={[
-							[
-								'core/paragraph',
-								{
-									placeholder:
-										'Write your content or add any block here...',
-								},
-							],
-						]}
+						template={innerBlocksTemplate}
 					/>
+
 					{buttonShow && (
 						<button
 							id="ezd_button_toggle"

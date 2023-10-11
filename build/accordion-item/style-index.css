@@ -32,6 +32,35 @@
   margin-left: 20px;
   flex: 1;
 }
+.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_right_link {
+  display: flex;
+  align-items: center;
+}
+.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_left_link {
+  position: relative;
+}
+.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_left_link a {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  padding-left: 0px !important;
+}
+.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_left_link .aagb__accordion_title {
+  padding-left: 30px;
+}
+.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading a {
+  text-decoration: none;
+  color: #333333;
+  opacity: 0.5;
+  font-size: 1.4rem !important;
+  line-height: 0.5;
+}
+.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading a.anchorjs-link:after {
+  font-size: 1.4rem !important;
+}
+.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading:hover a {
+  opacity: 1;
+}
 .wp-block-aab-accordion-item .collapse-icon span {
   display: block;
 }
@@ -39,16 +68,16 @@
   display: none;
 }
 
-.ezd_form_inner {
+.aagb_form_inner {
   max-width: 100%;
   width: 600px;
   margin: 0 auto 40px;
   text-align: center;
 }
-.ezd_form_inner .ezd_form_group {
+.aagb_form_inner .aagb_form_group {
   position: relative;
 }
-.ezd_form_inner .ezd_form_group:before {
+.aagb_form_inner .aagb_form_group:before {
   position: absolute;
   right: 14px;
   content: "\f179";
@@ -57,7 +86,7 @@
   font-size: 26px;
   color: rgba(68, 68, 68, 0.2666666667);
 }
-.ezd_form_inner .ezd_form_control {
+.aagb_form_inner .aagb_form_control {
   width: 100%;
   border: 1px solid #ccc;
   padding: 0 30px;
@@ -66,7 +95,7 @@
   font-size: 18px;
   color: #333;
 }
-.ezd_form_inner .help-block {
+.aagb_form_inner .help-block {
   font-size: 16px;
 }
 
@@ -81,29 +110,39 @@
   max-height: 4000px;
 }
 
-.ezd_overlay {
+.aagb_overlay {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff 75%);
   height: 50px;
   margin-top: -50px;
   position: relative;
 }
-.ezd_overlay.collapse_expand {
+.aagb_overlay.collapse_expand {
   display: none;
 }
 
-.accordion_wrapper_btn {
+.aagb_accordion_wrapper_btn {
   display: flex;
   justify-content: flex-end;
 }
-.accordion_wrapper_btn a {
+.aagb_accordion_wrapper_btn a {
   margin: 0px 0 5px 16px;
   color: #333;
   font-weight: 500;
   font-size: 16px;
   text-decoration: none !important;
+  display: flex;
 }
-.accordion_wrapper_btn a:hover {
+.aagb_accordion_wrapper_btn a:hover {
   color: #069;
+}
+.aagb_accordion_wrapper_btn a svg {
+  width: 0.875em;
+  margin-right: 4px;
+}
+
+.label-d-block {
+  display: block;
+  margin-bottom: 5px;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

@@ -176,6 +176,8 @@ final class AAGB_BLOCKS_CLASS {
 		}
 	}
 
+	
+
 	/**
 	 * Enqueue Block Assets
 	 */

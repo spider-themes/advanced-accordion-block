@@ -89,6 +89,18 @@
 		"buttonShow":{
 			"type": "boolean",
 			"default": false
+		},
+		"anchorLinkShow":{
+			"type": "boolean",
+			"default": true
+		},
+		"anchorPosition": {
+			"type": "string",
+			"default": "aagb_right_link"
+		},
+		"contentCount": {
+			"type": "number",
+			"default": 1
 		}
 	},
 	"textdomain": "advanced-accordion-block",

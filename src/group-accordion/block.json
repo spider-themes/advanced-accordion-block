@@ -9,6 +9,24 @@
 		"html": false,
 		"anchor": true
 	},
+	"examples": {
+		"type": "array",
+		"default": [
+			{
+				"heading": "Question 1",
+				"content": "Answer to question 1."
+			},
+			{
+				"heading": "Question 2",
+				"content": "Answer to question 2."
+			}
+		]
+	},
+	"example": {
+		"attributes": {
+			"heading": "Accordion Heading"
+		}
+	},
 	"attributes": {
 		"uniqueId": {
 			"type": "string"
@@ -23,11 +41,23 @@
 		},
 		"searchShow":{
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"showAllbtn":{
 			"type": "boolean",
-			"default": true
+			"default": false
+		},
+		"closeText":{
+			"type": "object",
+			"default": "Close all"
+		},
+		"openText":{
+			"type": "string",
+			"default": "Show all"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Accordion Heading"
 		}
 	},
 	"textdomain": "advanced-accordion-block",

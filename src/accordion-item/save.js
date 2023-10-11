@@ -19,6 +19,9 @@ const Save = ({ attributes }) => {
 		headerBg,
 		bodyBg,
 		buttonShow,
+		anchorPosition,
+		anchorLinkShow,
+		contentCount,
 	} = attributes;
 
 	const activeClass = makeActive ? `aagb__accordion_body--show` : '';
@@ -41,6 +44,24 @@ const Save = ({ attributes }) => {
 			currentIconClass = 'remove';
 		}
 	}
+
+	const renderContent = () => {
+		const innerBlocksContent = Array.from(
+			{ length: contentCount },
+			(_, index) => (
+				<InnerBlocks.Content
+					key={index}
+					className="aagb__accordion_inner_content"
+				/>
+			)
+		);
+
+		return (
+			<div className="aagb__accordion_component">
+				{innerBlocksContent}
+			</div>
+		);
+	};
 
 	return (
 		<React.Fragment>
@@ -66,7 +87,11 @@ const Save = ({ attributes }) => {
 						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 					}}
 				>
-					<div className={`aagb__accordion_heading ${iconPosition}`}>
+					<div
+						className={`aagb__accordion_heading ${iconPosition} ${
+							anchorPosition || ''
+						}`}
+					>
 						<RichText.Content
 							className="aagb__accordion_title"
 							tagName={headingTag}
@@ -102,15 +127,15 @@ const Save = ({ attributes }) => {
 						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 					}}
 				>
-					<div className="aagb__accordion_component">
-						<InnerBlocks.Content />
-					</div>
+					{renderContent()}
+					<span class="leftletter"></span>
 					{buttonShow && (
 						<>
-							<div className="ezd_overlay"></div>
+							<div className="aagb_overlay"></div>
 							<button
 								id="ezd_button_toggle"
 								className="ezd_button_toggle"
+								onClick={toggleContent}
 							>
 								Read More
 							</button>
@@ -118,6 +143,43 @@ const Save = ({ attributes }) => {
 					)}
 				</div>
 			</div>
+			{anchorLinkShow === true && (
+				<script>
+					{`
+								jQuery(document).ready(function($) {
+									if ($('.aagb__accordion_heading').length) {
+										$(document).ready(function() {
+											var Anchor1 = new AnchorJS();
+											Anchor1.add('.aagb__accordion_heading');
+										});
+									}
+									
+										// charecter count js 
+										var text_max = ${contentCount};
+										var countText = function(e) {
+											var txt = $('.aagb__accordion_component').text();
+											var text_length = txt.length;
+										  
+											if (text_length > text_max)
+											{
+												$('.aagb__accordion_component').text(txt.substr(0, text_max));
+												text_length = text_max;
+											}
+											   
+											var text_remaining = text_max - text_length;
+										  
+											$('.leftletter').html(text_remaining + ' characters remaining');
+										};
+									  
+										$('.leftletter').keyup(countText);
+									  
+										countText();
+										console.log(text_max);
+									
+								});
+							`}
+				</script>
+			)}
 		</React.Fragment>
 	);
 };

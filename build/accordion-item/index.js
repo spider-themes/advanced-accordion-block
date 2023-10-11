@@ -48,6 +48,13 @@ const iconPositions = [{
   label: 'Right',
   value: 'aagb_right_icon'
 }];
+const anchorPositions = [{
+  label: 'Left',
+  value: 'aagb_left_link'
+}, {
+  label: 'Right',
+  value: 'aagb_right_link'
+}];
 
 const Edit = _ref => {
   let {
@@ -70,8 +77,17 @@ const Edit = _ref => {
     iconBackground,
     headerBg,
     bodyBg,
-    buttonShow
-  } = attributes;
+    buttonShow,
+    anchorLinkShow,
+    anchorPosition,
+    contentCount
+  } = attributes; // Generate the template for InnerBlocks based on contentCount
+
+  const innerBlocksTemplate = Array.from({
+    length: contentCount
+  }, (_, index) => ['core/paragraph', {
+    content: `Content ${index + 1}`
+  }]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     initialOpen: false,
     title: __('Accordion Status', 'advanced-accordion-block')
@@ -160,6 +176,23 @@ const Edit = _ref => {
     }),
     value: headingTag
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: __('Anchor Link', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: __('Show Anchor Link', 'advanced-accordion-block'),
+    checked: anchorLinkShow // Use the state variable here
+    ,
+    onChange: () => setAttributes({
+      anchorLinkShow: !anchorLinkShow
+    })
+  }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: __('Anchor Icon Position', 'advanced-accordion-block'),
+    options: anchorPositions,
+    onChange: anchorPosition => setAttributes({
+      anchorPosition
+    }),
+    value: anchorPosition
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: __('Accordion Icon', 'advanced-accordion-block'),
     initialOpen: false
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
@@ -220,6 +253,18 @@ const Edit = _ref => {
     onChange: () => setAttributes({
       buttonShow: !buttonShow
     })
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: __('Content Options', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: __('Content Count', 'advanced-accordion-block'),
+    value: contentCount,
+    onChange: value => setAttributes({
+      contentCount: value
+    }),
+    min: 1,
+    max: 220 // Set the maximum count according to your requirement
+
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: `aagb__accordion_container ${makeActive ? 'aagb__accordion_active' : ''}`
   }), {
@@ -237,7 +282,7 @@ const Edit = _ref => {
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `aagb__accordion_heading ${iconPosition}`
+    className: `aagb__accordion_heading ${iconPosition} ${anchorPosition || ''}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: headingTag,
     value: heading,
@@ -249,7 +294,11 @@ const Edit = _ref => {
       margin: 0,
       color: headingColor ? headingColor : '#333333'
     }
-  })), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
+    href: "#"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
+    className: "dashicons dashicons-admin-links"
+  }))), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `aagb__accordion_icon`,
     style: {
       color: iconColor ? iconColor : '#333333',
@@ -267,9 +316,7 @@ const Edit = _ref => {
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
     allowedBlocks: true,
-    template: [['core/paragraph', {
-      placeholder: 'Write your content or add any block here...'
-    }]]
+    template: innerBlocksTemplate
   }), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", {
     id: "ezd_button_toggle",
     className: "ezd_button_toggle"
@@ -384,7 +431,10 @@ const Save = _ref => {
     iconBackground,
     headerBg,
     bodyBg,
-    buttonShow
+    buttonShow,
+    anchorPosition,
+    anchorLinkShow,
+    contentCount
   } = attributes;
   const activeClass = makeActive ? `aagb__accordion_body--show` : ''; // set unique ID
   // initial accordion stage
@@ -407,6 +457,18 @@ const Save = _ref => {
     }
   }
 
+  const renderContent = () => {
+    const innerBlocksContent = Array.from({
+      length: contentCount
+    }, (_, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, {
+      key: index,
+      className: "aagb__accordion_inner_content"
+    }));
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      className: "aagb__accordion_component"
+    }, innerBlocksContent);
+  };
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(React.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: `aagb__accordion_container panel ${makeActive ? 'aagb__accordion_active' : ''}`
   }), {
@@ -425,7 +487,7 @@ const Save = _ref => {
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `aagb__accordion_heading ${iconPosition}`
+    className: `aagb__accordion_heading ${iconPosition} ${anchorPosition || ''}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
     className: "aagb__accordion_title",
     tagName: headingTag,
@@ -450,14 +512,47 @@ const Save = _ref => {
       borderTop: `${border.width} ${border.style} ${border.color}`,
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "aagb__accordion_component"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null)), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "ezd_overlay"
+  }, renderContent(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
+    class: "leftletter"
+  }), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "aagb_overlay"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", {
     id: "ezd_button_toggle",
-    className: "ezd_button_toggle"
-  }, "Read More")))));
+    className: "ezd_button_toggle",
+    onClick: toggleContent
+  }, "Read More")))), anchorLinkShow === true && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("script", null, `
+								jQuery(document).ready(function($) {
+									if ($('.aagb__accordion_heading').length) {
+										$(document).ready(function() {
+											var Anchor1 = new AnchorJS();
+											Anchor1.add('.aagb__accordion_heading');
+										});
+									}
+									
+										// charecter count js 
+										var text_max = ${contentCount};
+										var countText = function(e) {
+											var txt = $('.aagb__accordion_component').text();
+											var text_length = txt.length;
+										  
+											if (text_length > text_max)
+											{
+												$('.aagb__accordion_component').text(txt.substr(0, text_max));
+												text_length = text_max;
+											}
+											   
+											var text_remaining = text_max - text_length;
+										  
+											$('.leftletter').html(text_remaining + ' characters remaining');
+										};
+									  
+										$('.leftletter').keyup(countText);
+									  
+										countText();
+										console.log(text_max);
+									
+								});
+							`));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Save);
@@ -629,7 +724,7 @@ function _extends() {
   \***************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"aab/accordion-item","version":"0.1.0","title":"Single Accordion","category":"accordion-block","description":"Single Accordion for Group Accordion","parent":["aab/group-accordion"],"supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"border":{"type":"object","default":{"width":"1px","color":"#cccccc","style":"solid"}},"paddings":{"type":"object","default":{"top":"10px","left":"15px","right":"15px","bottom":"10px"}},"margins":{"type":"object","default":{"top":"0px","bottom":"15px"}},"borderRadius":{"type":"number","default":0},"heading":{"type":"string","default":"Accordion Heading"},"headingTag":{"type":"string","default":"h4"},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"showIcon":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"uniqueId":{"type":"string"},"buttonShow":{"type":"boolean","default":false}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"aab/accordion-item","version":"0.1.0","title":"Single Accordion","category":"accordion-block","description":"Single Accordion for Group Accordion","parent":["aab/group-accordion"],"supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"border":{"type":"object","default":{"width":"1px","color":"#cccccc","style":"solid"}},"paddings":{"type":"object","default":{"top":"10px","left":"15px","right":"15px","bottom":"10px"}},"margins":{"type":"object","default":{"top":"0px","bottom":"15px"}},"borderRadius":{"type":"number","default":0},"heading":{"type":"string","default":"Accordion Heading"},"headingTag":{"type":"string","default":"h4"},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"showIcon":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"uniqueId":{"type":"string"},"buttonShow":{"type":"boolean","default":false},"anchorLinkShow":{"type":"boolean","default":true},"anchorPosition":{"type":"string","default":"aagb_right_link"},"contentCount":{"type":"number","default":1}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
