@@ -74,6 +74,10 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		link,
 		tab,
 		disableAccordion,
+		feedbacLabel,
+		yesBtn,
+		noBtn,
+		counterShow
 	} = attributes;
 
 	// set unique ID
@@ -374,27 +378,46 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						value={bodyBg}
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
 					/>
-					<SelectControl
-						label={__(
-							'Feedback Visiblity',
-							'advanced-accordion-block'
-						)}
-						options={[
-							{
-								label: __('Show', 'advanced-accordion-block'),
-								value: 'show',
-							},
-							{
-								label: __('Hide', 'advanced-accordion-block'),
-								value: 'hide',
-							},
-						]}
-						onChange={(feedbackShow) =>
-							setAttributes({ feedbackShow: !feedbackShow })
-						}
-						value={feedbackShow}
-					/>
 				</PanelBody>
+				<PanelBody
+					title={__('Feedback', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+				<ToggleControl
+					label={__('Enable / Disable', 'advanced-accordion-block')}
+					checked={feedbackShow}
+					onChange={() => setAttributes({ feedbackShow: !feedbackShow })}
+				/>
+				{feedbackShow == 1 &&
+					<Fragment>
+						<TextControl
+							label={__('Label', 'advanced-accordion-block')}
+							value={feedbacLabel}
+							onChange={(feedbacLabel) => setAttributes({ feedbacLabel })}
+						/>
+						<TextControl
+							label={__('Yes', 'advanced-accordion-block')}
+							value={yesBtn}
+							onChange={(yesBtn) => setAttributes({ yesBtn })}
+							className="bbpc-control-half yes-btn"
+						/>
+
+						<TextControl
+							label={__('No', 'advanced-accordion-block')}
+							value={noBtn}
+							onChange={(noBtn) => setAttributes({ noBtn })}
+							className="bbpc-control-half no-btn"
+						/>
+						<ToggleControl
+							label={__('Counter', 'advanced-accordion-block')}
+							checked={counterShow}
+							onChange={() => setAttributes({ counterShow: !counterShow })}
+						/>
+
+					</Fragment>	
+				}
+				</PanelBody>
+
 			</InspectorControls>
 			<div
 				{...useBlockProps({
@@ -555,6 +578,30 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 									],
 								]}
 							/>
+							{feedbackShow == 1 && (
+							<span
+								className={'feedback-btn-wrap'}
+								data-id={`${uniqueId}`}
+							>
+								{feedbacLabel && ( 
+								<span>{feedbacLabel}</span>
+								)}
+
+								{ yesBtn && (
+								<button className={'feedback-btn'} data-value="yes">
+								{yesBtn}
+								{counterShow && ( <span class="count">8</span> )}
+								</button>
+								)}
+								
+								{ noBtn && (
+								<button className={"feedback-btn"} data-value="no">
+								{noBtn}
+								{counterShow && ( <span class="count">8</span> )}
+								</button>
+								)}
+							</span>
+						)}
 						</div>
 					</Fragment>
 				)}

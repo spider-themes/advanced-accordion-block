@@ -70,6 +70,7 @@ final class AAGB_BLOCKS_CLASS {
 
 		// define constants
 		$this->define_constants();
+		$this->core_includes();
 
 		// block initialization
 		add_action( 'init', [ $this, 'blocks_init' ] );
@@ -106,6 +107,17 @@ final class AAGB_BLOCKS_CLASS {
 		define( 'AAGB_VERSION', '4.5.0' );
 		define( 'AAGB_URL', plugin_dir_url( __FILE__ ) );
 		define( 'AAGB_LIB_URL', AAGB_URL . 'lib/' );
+	}
+	
+	/**
+	 * Include Files
+	 *
+	 * Load core files required to run the plugin.
+	 *
+	 * @access public
+	 */
+	public function core_includes() {
+		require_once __DIR__ . '/includes/functions.php';
 	}
 
 	/**
@@ -184,11 +196,18 @@ final class AAGB_BLOCKS_CLASS {
 	public function external_libraries() {
 		if( ! is_admin() ) {
 			wp_enqueue_style( 'dashicons' );
-		}
+		} 
+
 		// enqueue JS
 		wp_enqueue_script( 'aagb-anchor-js', AAGB_LIB_URL . 'js/anchor.js', array('jquery'), '', true );
 		wp_enqueue_script( 'aagb-separate-accordion', AAGB_LIB_URL . 'js/separate-accordion.js', array('jquery'), AAGB_VERSION, true );
 		wp_enqueue_script( 'aagb-accordion-group', AAGB_LIB_URL . 'js/group-accordion.js', array('jquery'), AAGB_VERSION, true );
+		
+		wp_localize_script( 'jquery', 'aagb_local_object', array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),			 
+			'nonce' => wp_create_nonce( 'aagb_accordion_nonce' ),
+		) );
+
 	}
 }
 
