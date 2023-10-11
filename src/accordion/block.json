@@ -109,8 +109,24 @@
 			"default": false
 		},
 		"feedbackShow": {
+			"type": "boolean",
+			"default": false
+		},
+		"feedbacLabel": {
 			"type": "string",
-			"default": "show"
+			"default": "Was this answer helpful?"
+		},
+		"yesBtn": {
+			"type": "string",
+			"default": "Yes"
+		},
+		"noBtn": {
+			"type": "string",
+			"default": "No"
+		},		
+		"counterShow": {
+			"type": "boolean",
+			"default": false
 		},
 		"anchorPosition": {
 			"type": "string",

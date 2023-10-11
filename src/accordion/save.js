@@ -29,6 +29,10 @@ const Save = ({ attributes }) => {
 		tab,
 		disableAccordion,
 		feedbackShow,
+		feedbacLabel,
+		yesBtn,
+		noBtn,
+		counterShow
 	} = attributes;
 
 	const activeClass = makeActive
@@ -182,18 +186,32 @@ const Save = ({ attributes }) => {
 						}}
 					>
 						<InnerBlocks.Content />
-						{feedbackShow == 'show' && (
+						{feedbackShow == 1 && (
 							<span
 								className={'feedback-btn-wrap'}
 								data-id={`${uniqueId}`}
-							>
-								<span>Was this answer helpful?</span>
-								<button class="feedback-btn" data-value="yes">
-									Yes
+							> 
+								
+								{feedbacLabel && ( 
+								<span>{feedbacLabel}</span>
+								)}
+
+								{ yesBtn && (
+								<button className={'feedback-btn'} data-value="yes">
+								{yesBtn}
+								{counterShow && ( <span class="count">8</span> )}
 								</button>
-								<button class="feedback-btn" data-value="no">
-									No
+								)}
+								
+								{ noBtn && (
+								<button className={"feedback-btn"} data-value="no">
+								{noBtn}
+								{counterShow && ( <span class="count">8</span> )}
 								</button>
+								)}
+								
+								{/* <div id="yesCount">Total Yes: 0</div>
+								<div id="noCount">Total No: 0</div> */}
 							</span>
 						)}
 					</div>
