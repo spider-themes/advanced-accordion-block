@@ -22,6 +22,7 @@ const Save = ({ attributes }) => {
 		anchorPosition,
 		anchorLinkShow,
 		contentCount,
+		readText,
 	} = attributes;
 
 	const activeClass = makeActive ? `aagb__accordion_body--show` : '';
@@ -132,11 +133,13 @@ const Save = ({ attributes }) => {
 					{buttonShow && (
 						<>
 							<div className="aagb_overlay"></div>
-							<button
-								id="aagb_button_toggle"
-								className="aagb_button_toggle"
-							>
-								Read More
+							<button className="aagb_button_toggle">
+								<RichText.Content
+									value={readText}
+									style={{
+										margin: 0,
+									}}
+								/>
 							</button>
 						</>
 					)}

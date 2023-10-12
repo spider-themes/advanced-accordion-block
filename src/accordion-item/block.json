@@ -101,6 +101,10 @@
 		"contentCount": {
 			"type": "number",
 			"default": 1
+		},
+		"readText":{
+			"type": "string",
+			"default": "Read More"
 		}
 	},
 	"textdomain": "advanced-accordion-block",

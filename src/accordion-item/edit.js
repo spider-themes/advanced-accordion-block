@@ -68,6 +68,7 @@ const Edit = ({ attributes, setAttributes }) => {
 		anchorLinkShow,
 		anchorPosition,
 		contentCount,
+		readText,
 	} = attributes;
 	// Generate the template for InnerBlocks based on contentCount
 	const innerBlocksTemplate = Array.from(
@@ -407,11 +408,16 @@ const Edit = ({ attributes, setAttributes }) => {
 					/>
 
 					{buttonShow && (
-						<button
-							id="aagb_button_toggle"
-							className="aagb_button_toggle"
-						>
-							Read More
+						<button className="aagb_button_toggle">
+							<RichText
+								value={readText}
+								onChange={(readText) =>
+									setAttributes({ readText })
+								}
+								style={{
+									margin: 0,
+								}}
+							/>
 						</button>
 					)}
 				</div>
