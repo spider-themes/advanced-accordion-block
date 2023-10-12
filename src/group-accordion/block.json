@@ -9,19 +9,6 @@
 		"html": false,
 		"anchor": true
 	},
-	"examples": {
-		"type": "array",
-		"default": [
-			{
-				"heading": "Question 1",
-				"content": "Answer to question 1."
-			},
-			{
-				"heading": "Question 2",
-				"content": "Answer to question 2."
-			}
-		]
-	},
 	"example": {
 		"attributes": {
 			"heading": "Accordion Heading"
@@ -58,6 +45,10 @@
 		"heading": {
 			"type": "string",
 			"default": "Accordion Heading"
+		},
+		"activetorClass": {
+			"type": "string",
+			"default": "click"
 		}
 	},
 	"textdomain": "advanced-accordion-block",

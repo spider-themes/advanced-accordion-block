@@ -99,25 +99,11 @@
   font-size: 16px;
 }
 
-.aagb__accordion_component {
-  max-height: 100px;
-  overflow: hidden;
-  position: relative;
-  transition: max-height 0.2s ease;
-}
-.aagb__accordion_component.collapse_expand {
-  margin-bottom: 1em;
-  max-height: 4000px;
-}
-
 .aagb_overlay {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff 75%);
   height: 50px;
   margin-top: -50px;
   position: relative;
-}
-.aagb_overlay.collapse_expand {
-  display: none;
 }
 
 .aagb_accordion_wrapper_btn {
@@ -138,6 +124,24 @@
 .aagb_accordion_wrapper_btn a svg {
   width: 0.875em;
   margin-right: 4px;
+}
+
+.aagb__accordion_body .aagb_button_toggle {
+  padding: 0px;
+  border: 0px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  background: transparent;
+  border: 0px;
+}
+.aagb__accordion_body .aagb_button_toggle:hover {
+  color: #4c4cf1;
+  text-decoration: underline;
+}
+.aagb__accordion_body .aagb_button_toggle:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .label-d-block {

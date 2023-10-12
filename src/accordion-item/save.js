@@ -25,6 +25,7 @@ const Save = ({ attributes }) => {
 	} = attributes;
 
 	const activeClass = makeActive ? `aagb__accordion_body--show` : '';
+	const expandClass = buttonShow ? 'expand' : '';
 	// set unique ID
 
 	// initial accordion stage
@@ -119,7 +120,7 @@ const Save = ({ attributes }) => {
 					)}
 				</div>
 				<div
-					className={`aagb__accordion_body ${activeClass}`}
+					className={`aagb__accordion_body ${activeClass} ${expandClass}`}
 					role="region"
 					style={{
 						backgroundColor: bodyBg ? bodyBg : 'transparent',
@@ -128,14 +129,12 @@ const Save = ({ attributes }) => {
 					}}
 				>
 					{renderContent()}
-					<span class="leftletter"></span>
 					{buttonShow && (
 						<>
 							<div className="aagb_overlay"></div>
 							<button
-								id="ezd_button_toggle"
-								className="ezd_button_toggle"
-								onClick={toggleContent}
+								id="aagb_button_toggle"
+								className="aagb_button_toggle"
 							>
 								Read More
 							</button>
@@ -146,40 +145,38 @@ const Save = ({ attributes }) => {
 			{anchorLinkShow === true && (
 				<script>
 					{`
-								jQuery(document).ready(function($) {
-									if ($('.aagb__accordion_heading').length) {
-										$(document).ready(function() {
-											var Anchor1 = new AnchorJS();
-											Anchor1.add('.aagb__accordion_heading');
-										});
-									}
-									
-										// charecter count js 
-										var text_max = ${contentCount};
-										var countText = function(e) {
-											var txt = $('.aagb__accordion_component').text();
-											var text_length = txt.length;
-										  
-											if (text_length > text_max)
-											{
-												$('.aagb__accordion_component').text(txt.substr(0, text_max));
-												text_length = text_max;
-											}
-											   
-											var text_remaining = text_max - text_length;
-										  
-											$('.leftletter').html(text_remaining + ' characters remaining');
-										};
-									  
-										$('.leftletter').keyup(countText);
-									  
-										countText();
-										console.log(text_max);
-									
-								});
-							`}
+							jQuery(document).ready(function($) {
+								if ($('.aagb__accordion_heading').length) {
+									$(document).ready(function() {
+										var Anchor1 = new AnchorJS();
+										Anchor1.add('.aagb__accordion_heading');
+									});
+								}
+							});
+								
+					`}
 				</script>
 			)}
+			<script>
+				{`
+							jQuery(document).ready(function($) {
+								var text_max = parseInt("${contentCount}"); // Parse contentCount as an integer
+
+								$(".expand .aagb__accordion_component p").hide();
+								$(".expand .aagb__accordion_component p").slice(0, text_max).show();
+								
+								$(".expand .aagb_button_toggle").click(function(e) {
+									e.preventDefault();
+									$(".expand .aagb__accordion_component p:hidden").slice(0, text_max).fadeIn("slow");
+									if ($(".expand .aagb__accordion_component p:hidden").length === 0) {
+										$(".aagb_button_toggle").fadeOut("slow");
+										$(".aagb_overlay").fadeOut("slow");
+									}
+								});
+							});
+								
+					`}
+			</script>
 		</React.Fragment>
 	);
 };

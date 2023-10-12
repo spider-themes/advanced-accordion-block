@@ -1,14 +1,14 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 // import editor style
 import './editor.scss';
+import React, { useState } from 'react';
 import {
 	PanelBody,
 	ToggleControl,
-	// Button,
-	// ButtonGroup,
 	__experimentalBorderControl as BorderControl,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
-
 import colors from '../colors';
 import {
 	InnerBlocks,
@@ -17,24 +17,30 @@ import {
 	RichText,
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-
 import { Fragment } from '@wordpress/element';
+
 const Edit = ({ attributes, setAttributes, clientId }) => {
 	const {
 		uniqueId,
 		activeAccordionBorder,
 		searchShow,
 		showAllbtn,
-		showSchema,
 		placeholderText,
 		closeText,
 		openText,
 	} = attributes;
 
+	const [activetorClass, setActivetorClass] = useState('click');
+
 	// set unique ID
 	setAttributes({
 		uniqueId: clientId,
 	});
+	const handleActivetorChange = (value) => {
+		setActivetorClass(value);
+		setAttributes({ activetorClass: value });
+	};
+
 	return (
 		<Fragment>
 			<style>
@@ -156,6 +162,27 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						</div>
 					)}
 				</PanelBody>
+				<PanelBody
+					title={__('Activetor Event', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
+					<ToggleGroupControl
+						label="Activetor Event"
+						value={activetorClass}
+						onChange={handleActivetorChange}
+					>
+						<ToggleGroupControlOption
+							value="click"
+							label="Click"
+							showTooltip={true}
+						/>
+						<ToggleGroupControlOption value="hover" label="Hover" />
+						<ToggleGroupControlOption
+							value="autoplay"
+							label="Autoplay"
+						/>
+					</ToggleGroupControl>
+				</PanelBody>
 				{/* <PanelBody
 					title={__('FAQ Schema', 'advanced-accordion-block')}
 					initialOpen={false}
@@ -168,24 +195,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						}
 					/>
 				</PanelBody> */}
-				{/* <PanelBody
-					title={__('Activator Event', 'advanced-accordion-block')}
-					initialOpen={false}
-				>
-					<ButtonGroup>
-						<Button
-							variant="primary"
-							onClick={() =>
-								jQuery('.aagb__accordion_container  ').addClass(
-									'active'
-								)
-							}
-						>
-							Button 1
-						</Button>
-						<Button variant="primary">Button 2</Button>
-					</ButtonGroup>
-				</PanelBody> */}
 			</InspectorControls>
 
 			<div
@@ -194,7 +203,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				})}
 			>
 				{searchShow && (
-					<div className="aagb_form_inner" id="ezd-search-form">
+					<div className="aagb_form_inner" id="aagb-search-form">
 						<div className="aagb_form_group">
 							<input
 								id="aagb-search-id"

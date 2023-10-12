@@ -76,9 +76,6 @@
 
 	.aagb__accordion_body {
 		display: none;
-		// &.aagb__accordion_body--show {
-		// 	display: block;
-		// }
 	}
 }
 
@@ -114,24 +111,11 @@
 	}
 }
 
-.aagb__accordion_component {
-	max-height: 100px;
-    overflow: hidden;
-    position: relative;
-    transition: max-height .2s ease;
-	&.collapse_expand{
-		margin-bottom: 1em;
-		max-height: 4000px;
-	}
-}
 .aagb_overlay{
 	background: linear-gradient(to bottom,#ffffff00,#ffffff 75%);
 	height: 50px;
     margin-top: -50px;
 	position: relative;
-	&.collapse_expand{
-		display: none;
-	}
 }
 
 .aagb_accordion_wrapper_btn{
@@ -151,6 +135,23 @@
 			width: 0.875em;
 			margin-right: 4px;
 		}
+	}
+}
+.aagb__accordion_body .aagb_button_toggle{
+	padding: 0px;
+	border: 0px;
+	color: #333;
+	font-size: 16px;
+	font-weight: 500;
+	background: transparent;
+	border: 0px;
+	&:hover{
+		color: #4c4cf1;
+		text-decoration: underline;
+	}
+	&:focus{
+		outline: none;
+		box-shadow: none;
 	}
 }
 .label-d-block{

@@ -9,26 +9,39 @@ const Save = ({ attributes }) => {
 		placeholderText,
 		closeText,
 		openText,
-		examples,
+		activetorClass,
 	} = attributes;
 
-	const faqSchema = {
-		'@context': 'https://schema.org',
-		'@type': 'FAQPage',
-		mainEntity: (examples || []).map((item, index) => ({
-			'@type': 'Question',
-			name: item.heading,
-			acceptedAnswer: {
-				'@type': 'Answer',
-				text: item.content,
-			},
-		})),
-	};
+	// "examples": {
+	// 	"type": "object",
+	// 	"default": [
+	// 		{
+	// 			"heading": "Question 1",
+	// 			"content": "Answer to question 1."
+	// 		},
+	// 		{
+	// 			"heading": "Question 2",
+	// 			"content": "Answer to question 2."
+	// 		}
+	// 	]
+	// };
+	// const faqSchema = {
+	// 	'@context': 'https://schema.org',
+	// 	'@type': 'FAQPage',
+	// 	mainEntity: (examples || []).map((item, index) => ({
+	// 		'@type': 'Question',
+	// 		name: item.heading,
+	// 		acceptedAnswer: {
+	// 			'@type': 'Answer',
+	// 			text: item.content,
+	// 		},
+	// 	})),
+	// };
 
 	return (
 		<Fragment>
 			{searchShow && (
-				<div className="aagb_form_inner" id="ezd-search-form">
+				<div className="aagb_form_inner" id="aagb-search-form">
 					<div className="aagb_form_group">
 						<input
 							id="aagb-search-id"
@@ -97,7 +110,7 @@ const Save = ({ attributes }) => {
 			)}
 			<div
 				{...useBlockProps.save({
-					className: `searchable aagb_accordion_${uniqueId}`,
+					className: `searchable aagb_accordion_${uniqueId} ${activetorClass}`,
 				})}
 			>
 				<InnerBlocks.Content />

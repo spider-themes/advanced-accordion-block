@@ -300,9 +300,14 @@ const Edit = ({ attributes, setAttributes }) => {
 						value={bodyBg}
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
 					/>
+				</PanelBody>
+				<PanelBody
+					title={__('Read More Button', 'advanced-accordion-block')}
+					initialOpen={false}
+				>
 					<ToggleControl
 						label={__(
-							'Button Swither Show/Hide',
+							'Button Show/Hide',
 							'advanced-accordion-block'
 						)}
 						checked={buttonShow} // Use the state variable here
@@ -310,20 +315,20 @@ const Edit = ({ attributes, setAttributes }) => {
 							setAttributes({ buttonShow: !buttonShow })
 						}
 					/>
-				</PanelBody>
-				<PanelBody
-					title={__('Content Options', 'advanced-accordion-block')}
-					initialOpen={false}
-				>
-					<RangeControl
-						label={__('Content Count', 'advanced-accordion-block')}
-						value={contentCount}
-						onChange={(value) =>
-							setAttributes({ contentCount: value })
-						}
-						min={1}
-						max={220} // Set the maximum count according to your requirement
-					/>
+					{buttonShow && (
+						<RangeControl
+							label={__(
+								'Content Count',
+								'advanced-accordion-block'
+							)}
+							value={contentCount}
+							onChange={(value) =>
+								setAttributes({ contentCount: value })
+							}
+							min={1}
+							max={220} // Set the maximum count according to your requirement
+						/>
+					)}
 				</PanelBody>
 			</InspectorControls>
 
@@ -403,8 +408,8 @@ const Edit = ({ attributes, setAttributes }) => {
 
 					{buttonShow && (
 						<button
-							id="ezd_button_toggle"
-							className="ezd_button_toggle"
+							id="aagb_button_toggle"
+							className="aagb_button_toggle"
 						>
 							Read More
 						</button>

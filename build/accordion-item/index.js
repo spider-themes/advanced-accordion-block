@@ -246,17 +246,17 @@ const Edit = _ref => {
     onChange: bodyBg => setAttributes({
       bodyBg
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: __('Button Swither Show/Hide', 'advanced-accordion-block'),
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: __('Read More Button', 'advanced-accordion-block'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: __('Button Show/Hide', 'advanced-accordion-block'),
     checked: buttonShow // Use the state variable here
     ,
     onChange: () => setAttributes({
       buttonShow: !buttonShow
     })
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: __('Content Options', 'advanced-accordion-block'),
-    initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+  }), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: __('Content Count', 'advanced-accordion-block'),
     value: contentCount,
     onChange: value => setAttributes({
@@ -318,8 +318,8 @@ const Edit = _ref => {
     allowedBlocks: true,
     template: innerBlocksTemplate
   }), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", {
-    id: "ezd_button_toggle",
-    className: "ezd_button_toggle"
+    id: "aagb_button_toggle",
+    className: "aagb_button_toggle"
   }, "Read More"))));
 };
 
@@ -436,7 +436,8 @@ const Save = _ref => {
     anchorLinkShow,
     contentCount
   } = attributes;
-  const activeClass = makeActive ? `aagb__accordion_body--show` : ''; // set unique ID
+  const activeClass = makeActive ? `aagb__accordion_body--show` : '';
+  const expandClass = buttonShow ? 'expand' : ''; // set unique ID
   // initial accordion stage
 
   let currentIconClass;
@@ -505,54 +506,46 @@ const Save = _ref => {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
     className: `aagb__icon dashicons dashicons-${currentIconClass}`
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `aagb__accordion_body ${activeClass}`,
+    className: `aagb__accordion_body ${activeClass} ${expandClass}`,
     role: "region",
     style: {
       backgroundColor: bodyBg ? bodyBg : 'transparent',
       borderTop: `${border.width} ${border.style} ${border.color}`,
       padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`
     }
-  }, renderContent(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-    class: "leftletter"
-  }), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }, renderContent(), buttonShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "aagb_overlay"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", {
-    id: "ezd_button_toggle",
-    className: "ezd_button_toggle",
-    onClick: toggleContent
+    id: "aagb_button_toggle",
+    className: "aagb_button_toggle"
   }, "Read More")))), anchorLinkShow === true && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("script", null, `
-								jQuery(document).ready(function($) {
-									if ($('.aagb__accordion_heading').length) {
-										$(document).ready(function() {
-											var Anchor1 = new AnchorJS();
-											Anchor1.add('.aagb__accordion_heading');
-										});
+							jQuery(document).ready(function($) {
+								if ($('.aagb__accordion_heading').length) {
+									$(document).ready(function() {
+										var Anchor1 = new AnchorJS();
+										Anchor1.add('.aagb__accordion_heading');
+									});
+								}
+							});
+								
+					`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("script", null, `
+							jQuery(document).ready(function($) {
+								var text_max = parseInt("${contentCount}"); // Parse contentCount as an integer
+
+								$(".expand .aagb__accordion_component p").hide();
+								$(".expand .aagb__accordion_component p").slice(0, text_max).show();
+								
+								$(".expand .aagb_button_toggle").click(function(e) {
+									e.preventDefault();
+									$(".expand .aagb__accordion_component p:hidden").slice(0, text_max).fadeIn("slow");
+									if ($(".expand .aagb__accordion_component p:hidden").length === 0) {
+										$(".aagb_button_toggle").fadeOut("slow");
+										$(".aagb_overlay").fadeOut("slow");
 									}
-									
-										// charecter count js 
-										var text_max = ${contentCount};
-										var countText = function(e) {
-											var txt = $('.aagb__accordion_component').text();
-											var text_length = txt.length;
-										  
-											if (text_length > text_max)
-											{
-												$('.aagb__accordion_component').text(txt.substr(0, text_max));
-												text_length = text_max;
-											}
-											   
-											var text_remaining = text_max - text_length;
-										  
-											$('.leftletter').html(text_remaining + ' characters remaining');
-										};
-									  
-										$('.leftletter').keyup(countText);
-									  
-										countText();
-										console.log(text_max);
-									
 								});
-							`));
+							});
+								
+					`));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Save);
