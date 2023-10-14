@@ -77,14 +77,14 @@ const Save = ({ attributes }) => {
                     {yesBtn && (
                         <button className="feedback-btn" data-value="yes" data-id={uniqueKey}>
                             {yesBtn}
-                            {counterShow && (<span className="count">--</span>)}
+                            {counterShow && (<span className="count">0</span>)}
                         </button>
                     )}
 
                     {noBtn && (
                         <button className="feedback-btn" data-value="no" data-id={`${uniqueKey}`}>
                             {noBtn}
-                            {counterShow && (<span className="count">--</span>)}
+                            {counterShow && (<span className="count">0</span>)}
                         </button>
                     )}
                 </span>
