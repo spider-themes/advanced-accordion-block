@@ -128,9 +128,16 @@
 			"type": "boolean",
 			"default": false
 		},
+		"incNumber": {
+			"type": "number",
+			"default": 1
+		},		 
 		"anchorPosition": {
 			"type": "string",
 			"default": "aab_right_link"
+		},
+		"uniqueKey": {
+			"type": "string"
 		}
 	},
 	"textdomain": "advanced-accordion-block",

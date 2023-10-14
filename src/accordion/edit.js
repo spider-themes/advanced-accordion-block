@@ -48,6 +48,8 @@ const anchorPositions = [
 	},
 ];
 
+const { select } = wp.data;
+
 const Edit = ({ attributes, setAttributes, clientId }) => {
 	const {
 		uniqueId,
@@ -77,14 +79,23 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		feedbacLabel,
 		yesBtn,
 		noBtn,
-		counterShow
+		counterShow,
+		uniqueKey
 	} = attributes;
+
+	const numericClientId = clientId.replace(/\D/g, '').slice(0, 5);
+
+	// Ensure numericClientId contains exactly 5 characters
+	while (numericClientId.length < 5) {
+		numericClientId = '0' + numericClientId;
+	}
 
 	// set unique ID
 	setAttributes({
 		uniqueId: clientId.slice(0, 8),
+		uniqueKey: numericClientId
 	});
-
+		
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -413,6 +424,12 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 							checked={counterShow}
 							onChange={() => setAttributes({ counterShow: !counterShow })}
 						/>
+						<TextControl
+							label={__('ID', 'advanced-accordion-block')}
+							value={uniqueKey}
+							onChange={(uniqueKey) => setAttributes({ uniqueKey })}
+							disabled
+						/>
 
 					</Fragment>	
 				}
@@ -581,23 +598,23 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 							{feedbackShow == 1 && (
 							<span
 								className={'feedback-btn-wrap'}
-								data-id={`${uniqueId}`}
+								 
 							>
 								{feedbacLabel && ( 
 								<span>{feedbacLabel}</span>
 								)}
 
 								{ yesBtn && (
-								<button className={'feedback-btn'} data-value="yes">
-								{yesBtn}
-								{counterShow && ( <span class="count">8</span> )}
+								<button className="feedback-btn" data-value="yes" >
+									{yesBtn}
+									{counterShow && (<span className="count">--</span>)}
 								</button>
 								)}
 								
 								{ noBtn && (
-								<button className={"feedback-btn"} data-value="no">
-								{noBtn}
-								{counterShow && ( <span class="count">8</span> )}
+								<button className="feedback-btn" data-value="no" >
+									{noBtn}
+									{counterShow && (<span className="count">--</span>)}
 								</button>
 								)}
 							</span>

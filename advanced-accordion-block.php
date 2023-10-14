@@ -204,8 +204,8 @@ final class AAGB_BLOCKS_CLASS {
 		wp_enqueue_script( 'aagb-accordion-group', AAGB_LIB_URL . 'js/group-accordion.js', array('jquery'), AAGB_VERSION, true );
 		
 		wp_localize_script( 'jquery', 'aagb_local_object', array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),			 
-			'nonce' => wp_create_nonce( 'aagb_accordion_nonce' ),
+			'ajax_url' 		=> admin_url('admin-ajax.php'),			 
+			'nonce' 		=> wp_create_nonce('aagb_accordion_nonce')
 		) );
 
 	}

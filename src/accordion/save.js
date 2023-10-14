@@ -2,8 +2,10 @@
 /* eslint-disable no-lonely-if */
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 const { Fragment } = wp.element;
+const { select } = wp.data;
 
 const Save = ({ attributes }) => {
+	
 	const {
 		uniqueId,
 		makeActive,
@@ -32,7 +34,8 @@ const Save = ({ attributes }) => {
 		feedbacLabel,
 		yesBtn,
 		noBtn,
-		counterShow
+		counterShow,
+		uniqueKey
 	} = attributes;
 
 	const activeClass = makeActive
@@ -55,7 +58,40 @@ const Save = ({ attributes }) => {
 		} else if (iconClass === 'insert') {
 			currentIconClass = 'remove';
 		}
-	}
+	} 
+	
+	const FeedBackBtn = () => {
+		// Get the current page ID
+		
+		return (
+            feedbackShow && (
+                <span
+                    className="feedback-btn-wrap"
+                    data-id={uniqueKey}
+					>
+						
+                    {feedbacLabel && (
+                        <span>{feedbacLabel}</span>
+                    )}
+
+                    {yesBtn && (
+                        <button className="feedback-btn" data-value="yes" data-id={uniqueKey}>
+                            {yesBtn}
+                            {counterShow && (<span className="count">--</span>)}
+                        </button>
+                    )}
+
+                    {noBtn && (
+                        <button className="feedback-btn" data-value="no" data-id={`${uniqueKey}`}>
+                            {noBtn}
+                            {counterShow && (<span className="count">--</span>)}
+                        </button>
+                    )}
+                </span>
+            )
+        );
+		
+	};
 
 	return (
 		<div
@@ -186,34 +222,14 @@ const Save = ({ attributes }) => {
 						}}
 					>
 						<InnerBlocks.Content />
-						{feedbackShow == 1 && (
-							<span
-								className={'feedback-btn-wrap'}
-								data-id={`${uniqueId}`}
-							> 
-								
-								{feedbacLabel && ( 
-								<span>{feedbacLabel}</span>
-								)}
 
-								{ yesBtn && (
-								<button className={'feedback-btn'} data-value="yes">
-								{yesBtn}
-								{counterShow && ( <span class="count">8</span> )}
-								</button>
-								)}
-								
-								{ noBtn && (
-								<button className={"feedback-btn"} data-value="no">
-								{noBtn}
-								{counterShow && ( <span class="count">8</span> )}
-								</button>
-								)}
-								
-								{/* <div id="yesCount">Total Yes: 0</div>
-								<div id="noCount">Total No: 0</div> */}
-							</span>
-						)}
+
+
+
+						<FeedBackBtn />
+
+
+
 					</div>
 					{anchorLinkShow === true && (
 						<script>
