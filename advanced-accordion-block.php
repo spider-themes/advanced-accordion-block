@@ -4,7 +4,7 @@
  * Description:       	<strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
  * Requires at least: 	5.7
  * Requires PHP:      	7.0
- * Version:           	4.6.0
+ * Version:           	4.6.1
  * Plugin URI: 			https://spider-themes.net
  * Author: 				spider-themes
  * Author URI: 			https://spider-themes.net
@@ -32,7 +32,7 @@ if ( ! function_exists( 'aab_fs' ) ) {
 
 		if ( ! isset( $aab_fs ) ) {
 			// Include Freemius SDK.
-			require_once dirname(__FILE__) . '/admin/fs/start.php';
+			require_once dirname(__FILE__) . '/includes/fs/start.php';
 
 			$aab_fs = fs_dynamic_init( array(
 				'id'                  => '11041',
@@ -46,6 +46,8 @@ if ( ! function_exists( 'aab_fs' ) ) {
 					'slug'           => 'advanced-accordion-block',
 					'account'        => false,
 					'network'        => true,
+					'contact'    => false,
+					'support'    => false,
 					'parent'         => array(
 						'slug' => 'options-general.php',
 					),
@@ -58,6 +60,10 @@ if ( ! function_exists( 'aab_fs' ) ) {
 
 	// Init Freemius.
 	aab_fs();
+
+	// Remove the "Powered by Freemius" admin notice.
+	aab_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
+
 	// Signal that SDK was initiated.
 	do_action( 'aab_fs_loaded' );
 }

@@ -10,6 +10,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you to build a FAQs section easily on your site post and page.
 
+
 == Description ==
 
 **Advanced Accordion Gutenberg Block** is a custom native Gutenberg Block that allows you to build a **FAQs Section** or **Accordion** easily on your site post and page using **Gutenberg Editor**.
@@ -42,6 +43,7 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
 
+
 == Frequently Asked Questions ==
 
 = have you used any framework to develop this? =
@@ -52,7 +54,9 @@ No. It has been developed with 100% Gutenberg Native components. No Framework at
 
 Definitely, it is responsive.
 
+
 == Screenshots ==
+
 
 == Installation ==
 
@@ -69,21 +73,30 @@ It's really easy and super simple to install **Quick Edit** plugin.
 3.  Upload the plugin files to the `/wp-content/plugins/advanced-accordion-block` directory.
 4.  Activate the plugin through the 'Plugins' screen in WordPress.
 
+
 == Changelog ==
+
+= 4.6.0  (23 November 2023) =
+Updated: Freemius SDK to 2.6.1
+Tweaked: Removed some unnecessary links
+
 = 4.6.0 =
 * Changed the plugin ownership to spider-themes
 * Plugin's page moved under the WordPress Settings page from Tools page
 * Plugin's welcome page design changed/improved
+
 = 4.5.0 =
 * Adding new Group Accordion block
 * Adding animation
 * Fixing minor issues
+
 = 4.0.0 =
 * Click event issue fixing
 * Id for accordion
 * Linked Accordion feature
 * Disable Accordion feature
 * Block Patterns added
+
 = 3.0.0 =
 * A Major updates with a lot of changes
 * Remoe jQuery dependency
@@ -92,11 +105,13 @@ It's really easy and super simple to install **Quick Edit** plugin.
 * Border Radius
 * **Active Accordion on Page Load**
 * Custom Margin & Padding Options
+
 = 2.0.0 =
 * A Major updates with a lot of changes
 * Nested Accordion
 * Accordion Container Border
 * Accordion head & body color & background
+
 = 1.0.2 =
 * Supports all blocks for building accordion content
 * Icon issue fixing

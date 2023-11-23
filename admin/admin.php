@@ -39,7 +39,7 @@ class AAB_Admin_Page {
 									<h2 class="text-slate-800 text-[1.8rem] leading-[2.4rem] pb-3 font-medium text-left"> Welcome to Advanced Accordion Block!</h2>
 									<p class="text-slate-500 pb-7">Advanced Accordion Gutenberg Block is Built with Gutenberg Native Components that allows you to build a FAQs Section or Accordion easily on your site post and page using Gutenberg Editor.</p>
 									<div class="mr-[80px] aab-video-container">
-										<iframe width="712" height="380" src="https://www.youtube.com/embed/gZ_zL6RwQhA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										<iframe width="712" height="380" src="https://www.youtube.com/embed/K40z8KxojxE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 									</div>
 									<span class="relative z-0 inline-flex pt-6 justify-start w-full">
 										<a href="<?php echo admin_url('post-new.php?post_type=page'); ?>" target="_blank" class="aab-btn btn-fill inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-aab focus-visible:bg-aab-hover hover:bg-aab-hover focus:outline-none mr-4">
