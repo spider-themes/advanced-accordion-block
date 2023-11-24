@@ -27,9 +27,8 @@ class AAB_Admin_Page {
 
     public function aab_admin_page_content_callback(){
         ?>
-<main class="py-[2.43rem]">
+<main class="py-2rem">
     <div class="ezd-custom-container ezd-container ">
-        <h1 class="sr-only">Page title</h1>
         <div class="ezd-grid ezd-grid-cols-12">
             <div class="ezd-xl-col-9">
                 <section class="ezd_dashboard_box">
@@ -55,39 +54,37 @@ class AAB_Admin_Page {
                 </section>
             </div>
             <div class="ezd-xl-col-3">
-                <div class="ezd_dashboard_box box-2">
-                    <section class="section-2-title">
-                        <h3> Key Features: </h3>
-                        <p>
-                            Advanced Accordion Gutenberg Block has unlimited Styling with Custom Margin,
-                            Padding,
-                            Border Radius, Color, Background, Tag Selection, etc.
-                        </p>
-                        <ul>
-                            <li>Highly Customizable</li>
-                            <li>Built with Gutenberg Native Components</li>
-                            <li>Unlimited Nested Accordion</li>
-                            <li>SEO Friendly</li>
-                            <li>All Types of Content Supported</li>
-                            <li>Responsive & Retina Ready</li>
-                            <li>Super Fast, Slick</li>
-                            <li>5 Pairs of Icons</li>
-                            <li>Make Active Accordion on Page Load</li>
-                        </ul>
-                    </section>
-                    <section class="section-2-title">
-                        <h3>Get 5-star Support</h3>
-                        <p>Need some help? Our awesome support team is
-                            here
-                            to help you with any question you have.</p>
-                        <a class="text-base text-aab focus:text-aab focus-visible:text-aab-hover active:text-aab-hover hover:text-aab-hover underline"
-                            href="https://wordpress.org/support/plugin/advanced-accordion-block/" target="_blank"
-                            rel="noreferrer">Get Support</a>
-                        <a class="text-base text-aab focus:text-aab focus-visible:text-aab-hover active:text-aab-hover hover:text-aab-hover no-underline"
-                            href="https://wordpress.org/support/plugin/advanced-accordion-block/" target="_blank"
-                            rel="noreferrer"> → </a>
-                    </section>
-                </div>
+                <section class="section-2-title ezd_dashboard_box box-2">
+                    <h3> Key Features: </h3>
+                    <p>
+                        Advanced Accordion Gutenberg Block has unlimited Styling with Custom Margin,
+                        Padding,
+                        Border Radius, Color, Background, Tag Selection, etc.
+                    </p>
+                    <ul>
+                        <li>Highly Customizable</li>
+                        <li>Built with Gutenberg Native Components</li>
+                        <li>Unlimited Nested Accordion</li>
+                        <li>SEO Friendly</li>
+                        <li>All Types of Content Supported</li>
+                        <li>Responsive & Retina Ready</li>
+                        <li>Super Fast, Slick</li>
+                        <li>5 Pairs of Icons</li>
+                        <li>Make Active Accordion on Page Load</li>
+                    </ul>
+                </section>
+                <section class="section-2-title ezd_dashboard_box box-2">
+                    <h3>Get 5-star Support</h3>
+                    <p>Need some help? Our awesome support team is
+                        here
+                        to help you with any question you have.</p>
+                    <a class="text-base text-aab focus:text-aab focus-visible:text-aab-hover active:text-aab-hover hover:text-aab-hover underline"
+                        href="https://wordpress.org/support/plugin/advanced-accordion-block/" target="_blank"
+                        rel="noreferrer">Get Support</a>
+                    <a class="text-base text-aab focus:text-aab focus-visible:text-aab-hover active:text-aab-hover hover:text-aab-hover no-underline"
+                        href="https://wordpress.org/support/plugin/advanced-accordion-block/" target="_blank"
+                        rel="noreferrer"> → </a>
+                </section>
             </div>
         </div>
     </div>

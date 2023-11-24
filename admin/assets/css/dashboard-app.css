@@ -529,6 +529,10 @@ button:focus {
 	margin-bottom: 2px;
 	color: #3c434a;
 }
+.py-2rem {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
 @media (max-width: 1199px) {
 	.ezd-custom-container.ezd-container {
 		width: 96%;
