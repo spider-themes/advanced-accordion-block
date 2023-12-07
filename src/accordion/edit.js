@@ -8,9 +8,7 @@ import {
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
-import { Dashicon } from '@wordpress/components';
 import {
-	TabPanel,
 	ColorPalette,
 	PanelBody,
 	RangeControl,
@@ -52,7 +50,7 @@ const anchorPositions = [
 
 const { select } = wp.data;
 
-const Edit = ({ attributes, setAttributes, clientId, tabSelected }) => {
+const Edit = ({ attributes, setAttributes, clientId }) => {
 	const {
 		uniqueId,
 		makeActive,
@@ -82,7 +80,7 @@ const Edit = ({ attributes, setAttributes, clientId, tabSelected }) => {
 		yesBtn,
 		noBtn,
 		counterShow,
-		uniqueKey,
+		uniqueKey
 	} = attributes;
 
 	const numericClientId = clientId.replace(/\D/g, '').slice(0, 5);
@@ -95,106 +93,12 @@ const Edit = ({ attributes, setAttributes, clientId, tabSelected }) => {
 	// set unique ID
 	setAttributes({
 		uniqueId: clientId.slice(0, 8),
-		uniqueKey: numericClientId,
+		uniqueKey: numericClientId
 	});
-
+		
 	return (
 		<Fragment>
 			<InspectorControls>
-				<TabPanel
-					className="my-tab-panel"
-					activeClass="active-tab"
-					onSelect={(newTab) =>
-						setAttributes({ tabSelected: newTab })
-					}
-					tabs={[
-						{
-							name: 'layout',
-							title: (
-								<Fragment>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										viewBox="0 0 24 24"
-										width="24"
-										height="24"
-										aria-hidden="true"
-										focusable="false"
-									>
-										<path
-											fill-rule="evenodd"
-											d="M10.289 4.836A1 1 0 0111.275 4h1.306a1 1 0 01.987.836l.244 1.466c.787.26 1.503.679 2.108 1.218l1.393-.522a1 1 0 011.216.437l.653 1.13a1 1 0 01-.23 1.273l-1.148.944a6.025 6.025 0 010 2.435l1.149.946a1 1 0 01.23 1.272l-.653 1.13a1 1 0 01-1.216.437l-1.394-.522c-.605.54-1.32.958-2.108 1.218l-.244 1.466a1 1 0 01-.987.836h-1.306a1 1 0 01-.986-.836l-.244-1.466a5.995 5.995 0 01-2.108-1.218l-1.394.522a1 1 0 01-1.217-.436l-.653-1.131a1 1 0 01.23-1.272l1.149-.946a6.026 6.026 0 010-2.435l-1.148-.944a1 1 0 01-.23-1.272l.653-1.131a1 1 0 011.217-.437l1.393.522a5.994 5.994 0 012.108-1.218l.244-1.466zM14.929 12a3 3 0 11-6 0 3 3 0 016 0z"
-											clip-rule="evenodd"
-										></path>
-									</svg>
-								</Fragment>
-							),
-							className: 'layout-tab',
-						},
-						{
-							name: 'style',
-							title: (
-								<Fragment>
-									<svg
-										viewBox="0 0 24 24"
-										xmlns="http://www.w3.org/2000/svg"
-										width="24"
-										height="24"
-										aria-hidden="true"
-										focusable="false"
-									>
-										<path d="M12 4c-4.4 0-8 3.6-8 8v.1c0 4.1 3.2 7.5 7.2 7.9h.8c4.4 0 8-3.6 8-8s-3.6-8-8-8zm0 15V5c3.9 0 7 3.1 7 7s-3.1 7-7 7z"></path>
-									</svg>
-								</Fragment>
-							),
-							className: 'style-tab',
-						},
-					]}
-				>
-					{(tab) => (
-						<PanelBody>
-							{tab.name === 'layout' && (
-								<Fragment>
-									<PanelBody
-										initialOpen={false}
-										title={__(
-											'Accordion ID',
-											'advanced-accordion-block'
-										)}
-									>
-										<TextControl
-											label={__(
-												'Set Accordion ID',
-												'advanced-accordion-block'
-											)}
-											value={id}
-											onChange={(id) =>
-												setAttributes({ id })
-											}
-										/>
-									</PanelBody>
-								</Fragment>
-							)}
-							{tab.name === 'style' && (
-								<Fragment>
-									{/* Your style controls go here */}
-									<RangeControl
-										label={__(
-											'Border Radius',
-											'advanced-accordion-block'
-										)}
-										value={borderRadius}
-										onChange={(borderRadius) =>
-											setAttributes({ borderRadius })
-										}
-										min={0}
-										max={50}
-									/>
-									{/* Add more style controls here */}
-								</Fragment>
-							)}
-						</PanelBody>
-					)}
-				</TabPanel>
 				<PanelBody
 					initialOpen={false}
 					title={__('Accordion ID', 'advanced-accordion-block')}
@@ -490,59 +394,47 @@ const Edit = ({ attributes, setAttributes, clientId, tabSelected }) => {
 					title={__('Feedback', 'advanced-accordion-block')}
 					initialOpen={false}
 				>
-					<ToggleControl
-						label={__(
-							'Enable / Disable',
-							'advanced-accordion-block'
-						)}
-						checked={feedbackShow}
-						onChange={() =>
-							setAttributes({ feedbackShow: !feedbackShow })
-						}
-					/>
-					{feedbackShow == 1 && (
-						<Fragment>
-							<TextControl
-								label={__('Label', 'advanced-accordion-block')}
-								value={feedbacLabel}
-								onChange={(feedbacLabel) =>
-									setAttributes({ feedbacLabel })
-								}
-							/>
-							<TextControl
-								label={__('Yes', 'advanced-accordion-block')}
-								value={yesBtn}
-								onChange={(yesBtn) => setAttributes({ yesBtn })}
-								className="bbpc-control-half yes-btn"
-							/>
+				<ToggleControl
+					label={__('Enable / Disable', 'advanced-accordion-block')}
+					checked={feedbackShow}
+					onChange={() => setAttributes({ feedbackShow: !feedbackShow })}
+				/>
+				{feedbackShow == 1 &&
+					<Fragment>
+						<TextControl
+							label={__('Label', 'advanced-accordion-block')}
+							value={feedbacLabel}
+							onChange={(feedbacLabel) => setAttributes({ feedbacLabel })}
+						/>
+						<TextControl
+							label={__('Yes', 'advanced-accordion-block')}
+							value={yesBtn}
+							onChange={(yesBtn) => setAttributes({ yesBtn })}
+							className="bbpc-control-half yes-btn"
+						/>
 
-							<TextControl
-								label={__('No', 'advanced-accordion-block')}
-								value={noBtn}
-								onChange={(noBtn) => setAttributes({ noBtn })}
-								className="bbpc-control-half no-btn"
-							/>
-							<ToggleControl
-								label={__(
-									'Counter',
-									'advanced-accordion-block'
-								)}
-								checked={counterShow}
-								onChange={() =>
-									setAttributes({ counterShow: !counterShow })
-								}
-							/>
-							<TextControl
-								label={__('ID', 'advanced-accordion-block')}
-								value={uniqueKey}
-								onChange={(uniqueKey) =>
-									setAttributes({ uniqueKey })
-								}
-								disabled
-							/>
-						</Fragment>
-					)}
+						<TextControl
+							label={__('No', 'advanced-accordion-block')}
+							value={noBtn}
+							onChange={(noBtn) => setAttributes({ noBtn })}
+							className="bbpc-control-half no-btn"
+						/>
+						<ToggleControl
+							label={__('Counter', 'advanced-accordion-block')}
+							checked={counterShow}
+							onChange={() => setAttributes({ counterShow: !counterShow })}
+						/>
+						<TextControl
+							label={__('ID', 'advanced-accordion-block')}
+							value={uniqueKey}
+							onChange={(uniqueKey) => setAttributes({ uniqueKey })}
+							disabled
+						/>
+
+					</Fragment>	
+				}
 				</PanelBody>
+
 			</InspectorControls>
 			<div
 				{...useBlockProps({
@@ -704,40 +596,29 @@ const Edit = ({ attributes, setAttributes, clientId, tabSelected }) => {
 								]}
 							/>
 							{feedbackShow == 1 && (
-								<span className={'feedback-btn-wrap'}>
-									{feedbacLabel && (
-										<span>{feedbacLabel}</span>
-									)}
+							<span
+								className={'feedback-btn-wrap'}
+								 
+							>
+								{feedbacLabel && ( 
+								<span>{feedbacLabel}</span>
+								)}
 
-									{yesBtn && (
-										<button
-											className="feedback-btn"
-											data-value="yes"
-										>
-											{yesBtn}
-											{counterShow && (
-												<span className="count">
-													--
-												</span>
-											)}
-										</button>
-									)}
-
-									{noBtn && (
-										<button
-											className="feedback-btn"
-											data-value="no"
-										>
-											{noBtn}
-											{counterShow && (
-												<span className="count">
-													--
-												</span>
-											)}
-										</button>
-									)}
-								</span>
-							)}
+								{ yesBtn && (
+								<button className="feedback-btn" data-value="yes" >
+									{yesBtn}
+									{counterShow && (<span className="count">--</span>)}
+								</button>
+								)}
+								
+								{ noBtn && (
+								<button className="feedback-btn" data-value="no" >
+									{noBtn}
+									{counterShow && (<span className="count">--</span>)}
+								</button>
+								)}
+							</span>
+						)}
 						</div>
 					</Fragment>
 				)}
