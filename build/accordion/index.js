@@ -36,6 +36,7 @@ const {
 const {
   __
 } = wp.i18n;
+const licensing = aagb_local_object.licensing ? aagb_local_object.licensing : null;
 
 
  // include editor styles
@@ -229,24 +230,19 @@ const Edit = _ref => {
       headingTag
     }),
     value: headingTag
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  })), licensing.can_use_premium_code && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: __('Anchor Link', 'advanced-accordion-block'),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: __('Show Anchor Link', 'advanced-accordion-block'),
-    checked: anchorLinkShow // Use the state variable here
-    ,
-    onChange: () => setAttributes({
-      anchorLinkShow: !anchorLinkShow
-    })
-  }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: __('Anchor Icon Position', 'advanced-accordion-block'),
-    options: anchorPositions,
-    onChange: anchorPosition => setAttributes({
-      anchorPosition
-    }),
-    value: anchorPosition
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Notice, {
+    actions: [{
+      label: 'Buy Pro',
+      variant: 'primary'
+    }],
+    status: "warning",
+    isDismissible: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(React.Fragment, {
+    key: ".0"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, "This is premium feature. Buy the Pro version to unlock this feature."), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, " This feature allows you to create unique links for each FAQ item within the accordion. It's handy for directing users to specific FAQs from external sources or within the same page.  ")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: __('Accordion Icon', 'advanced-accordion-block'),
     initialOpen: false
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
@@ -410,6 +406,7 @@ const Edit = _ref => {
       color: headingColor ? headingColor : '#333333'
     }
   }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
+    className: "anchorjs-link",
     href: "#"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: "dashicons dashicons-admin-links"

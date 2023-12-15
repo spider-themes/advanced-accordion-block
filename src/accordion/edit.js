@@ -17,8 +17,10 @@ import {
 	__experimentalBoxControl as BoxControl,
 	__experimentalBorderControl as BorderControl,
 	TextControl,
+	Notice
 } from '@wordpress/components';
 const { __ } = wp.i18n;
+const licensing = aagb_local_object.licensing ? aagb_local_object.licensing : null
 
 import colors from '../colors';
 import icons from './icons';
@@ -286,38 +288,28 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						value={headingTag}
 					/>
 				</PanelBody>
-				<PanelBody
-					title={__('Anchor Link', 'advanced-accordion-block')}
-					initialOpen={false}
-				>
-					<ToggleControl
-						label={__(
-							'Show Anchor Link',
-							'advanced-accordion-block'
-						)}
-						checked={anchorLinkShow} // Use the state variable here
-						onChange={() =>
-							setAttributes({ anchorLinkShow: !anchorLinkShow })
-						}
-					/>
-					{anchorLinkShow && (
-						<Fragment>
-							<SelectControl
-								label={__(
-									'Anchor Icon Position',
-									'advanced-accordion-block'
-								)}
-								options={anchorPositions}
-								onChange={(anchorPosition) =>
-									setAttributes({
-										anchorPosition,
-									})
-								}
-								value={anchorPosition}
-							/>
-						</Fragment>
-					)}
-				</PanelBody>
+
+				{licensing.can_use_premium_code && (
+					<PanelBody
+						title={__('Anchor Link', 'advanced-accordion-block')}
+						initialOpen={false}
+					>
+						<Notice
+								actions={[
+									{
+										label: 'Buy Pro',
+										variant: 'primary',
+									},
+								]}
+								status="warning"
+								isDismissible={false}>
+							<React.Fragment key=".0">
+								<p>This is premium feature. Buy the Pro version to unlock this feature.</p>
+								<p> This feature allows you to create unique links for each FAQ item within the accordion. It's handy for directing users to specific FAQs from external sources or within the same page.  </p>
+							</React.Fragment>
+						</Notice>
+					</PanelBody>
+			)}
 				<PanelBody
 					title={__('Accordion Icon', 'advanced-accordion-block')}
 					initialOpen={false}
@@ -545,7 +537,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 									}}
 								/>
 								{anchorLinkShow && (
-									<a href="#">
+									<a className="anchorjs-link" href="#">
 										<i className="dashicons dashicons-admin-links"></i>
 									</a>
 								)}

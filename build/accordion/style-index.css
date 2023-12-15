@@ -19,6 +19,9 @@
   align-items: center;
   cursor: pointer;
 }
+.wp-block-aab-accordion-block .aab__accordion_head .anchorjs-link {
+  padding-left: 8px;
+}
 .wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_icon {
   width: 20px;
   height: 20px;

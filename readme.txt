@@ -1,5 +1,5 @@
 === Advanced Accordion Gutenberg Block ===
-Contributors: mdjwel, binsaifullah
+Contributors: mdjwel
 Tags: accordion block, gutenberg block, FAQ, FAQs, Accordion, FAQ block, FAQ gutenberg block, accordion gutenberg block
 Requires at least: 5.0
 Tested up to: 6.0.2
@@ -76,7 +76,7 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
-= 4.6.0  (23 November 2023) =
+= 4.1.0  (23 November 2023) =
 Updated: Freemius SDK to 2.6.1
 Tweaked: Removed some unnecessary links
 
