@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-shadow */
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
+import React from 'react';
+
 const {Fragment} = wp.element;
 import {
   InnerBlocks,
@@ -42,16 +44,7 @@ const iconPositions = [
     value: 'aab_right_icon',
   },
 ];
-const anchorPositions = [
-  {
-    label: 'Left',
-    value: 'aab_left_link',
-  },
-  {
-    label: 'Right',
-    value: 'aab_right_link',
-  },
-];
+
 
 const {select} = wp.data;
 
@@ -59,7 +52,6 @@ const Edit = ({attributes, setAttributes, clientId}) => {
   const {
     uniqueId,
     makeActive,
-    feedbackShow,
     border,
     margins,
     paddings,
@@ -81,11 +73,6 @@ const Edit = ({attributes, setAttributes, clientId}) => {
     link,
     tab,
     disableAccordion,
-    feedbacLabel,
-    yesBtn,
-    noBtn,
-    counterShow,
-    uniqueKey,
   } = attributes;
 
   const numericClientId = clientId.replace(/\D/g, '').slice(0, 5);
@@ -390,7 +377,7 @@ const Edit = ({attributes, setAttributes, clientId}) => {
                 </p>
 
                 <p>
-                  <b>Feedback</b> <br />
+                  <b>Voting Feedback</b> <br />
                   Add feedback voting buttons to each FAQ item. From the total vote count, you can understand how helpful an accordion is.
                 </p>
 
@@ -402,6 +389,16 @@ const Edit = ({attributes, setAttributes, clientId}) => {
                 <p>
                   <b>Read More</b> <br />
                   Expand the accordion content beyond a certain character limit or line count, displaying a "Read More" button or link to reveal the entire content.
+                </p>
+
+                <p>
+                  <b>Instant Search</b> <br />
+                  Enable a search bar to help users find specific FAQs quickly. It's useful when you have a long list of FAQs.
+                </p>
+
+                <p>
+                  <b> Activator Event</b> <br />
+                  Choose the event type to activate the accordion. You can choose from Click, Hover, or Autoplay.
                 </p>
               </React.Fragment>
             </Notice>
@@ -556,38 +553,11 @@ const Edit = ({attributes, setAttributes, clientId}) => {
                         [
                           'core/paragraph',
                           {
-                            placeholder:
-                                'Write your content or add any block here...',
+                            placeholder: 'Write your content or add any block here...',
                           },
                         ],
                       ]}
                   />
-                  {feedbackShow == 1 && (
-                      <span
-                          className={'feedback-btn-wrap'}
-
-                      >
-								{feedbacLabel && (
-                    <span>{feedbacLabel}</span>
-                )}
-
-                        {yesBtn && (
-                            <button className="feedback-btn" data-value="yes">
-                              {yesBtn}
-                              {counterShow &&
-                                  (<span className="count">--</span>)}
-                            </button>
-                        )}
-
-                        {noBtn && (
-                            <button className="feedback-btn" data-value="no">
-                              {noBtn}
-                              {counterShow &&
-                                  (<span className="count">--</span>)}
-                            </button>
-                        )}
-							</span>
-                  )}
                 </div>
               </Fragment>
           )}

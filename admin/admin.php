@@ -43,8 +43,7 @@ class AAB_Admin_Page {
                             allowfullscreen></iframe>
                     </div>
                     <span class="ezd-d-flex">
-                        <a href="<?php echo admin_url('post-new.php?post_type=page'); ?>" target="_blank"
-                            class="aab-btn btn-fill">
+                        <a href="<?php echo admin_url('post-new.php?post_type=page'); ?>" class="aab-btn btn-fill">
                             Create New Page
                         </a>
                         <a href="http://spider-themes.net/" target="_blank" class="aab-btn inline-flex ">

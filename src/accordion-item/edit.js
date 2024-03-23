@@ -64,11 +64,8 @@ const Edit = ({ attributes, setAttributes }) => {
 		iconBackground,
 		headerBg,
 		bodyBg,
-		buttonShow,
-		anchorLinkShow,
 		anchorPosition,
 		contentCount,
-		readText,
 	} = attributes;
 	// Generate the template for InnerBlocks based on contentCount
 	const innerBlocksTemplate = Array.from(
@@ -198,38 +195,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						value={headingTag}
 					/>
 				</PanelBody>
-				<PanelBody
-					title={__('Anchor Link', 'advanced-accordion-block')}
-					initialOpen={false}
-				>
-					<ToggleControl
-						label={__(
-							'Show Anchor Link',
-							'advanced-accordion-block'
-						)}
-						checked={anchorLinkShow} // Use the state variable here
-						onChange={() =>
-							setAttributes({ anchorLinkShow: !anchorLinkShow })
-						}
-					/>
-					{anchorLinkShow && (
-						<Fragment>
-							<SelectControl
-								label={__(
-									'Anchor Icon Position',
-									'advanced-accordion-block'
-								)}
-								options={anchorPositions}
-								onChange={(anchorPosition) =>
-									setAttributes({
-										anchorPosition,
-									})
-								}
-								value={anchorPosition}
-							/>
-						</Fragment>
-					)}
-				</PanelBody>
+
 				<PanelBody
 					title={__('Accordion Icon', 'advanced-accordion-block')}
 					initialOpen={false}
@@ -302,35 +268,6 @@ const Edit = ({ attributes, setAttributes }) => {
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
 					/>
 				</PanelBody>
-				<PanelBody
-					title={__('Read More Button', 'advanced-accordion-block')}
-					initialOpen={false}
-				>
-					<ToggleControl
-						label={__(
-							'Button Show/Hide',
-							'advanced-accordion-block'
-						)}
-						checked={buttonShow} // Use the state variable here
-						onChange={() =>
-							setAttributes({ buttonShow: !buttonShow })
-						}
-					/>
-					{buttonShow && (
-						<RangeControl
-							label={__(
-								'Content Count',
-								'advanced-accordion-block'
-							)}
-							value={contentCount}
-							onChange={(value) =>
-								setAttributes({ contentCount: value })
-							}
-							min={1}
-							max={220} // Set the maximum count according to your requirement
-						/>
-					)}
-				</PanelBody>
 			</InspectorControls>
 
 			<div
@@ -354,11 +291,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 					}}
 				>
-					<div
-						className={`aagb__accordion_heading ${iconPosition} ${
-							anchorPosition || ''
-						}`}
-					>
+					<div className="aagb__accordion_heading">
 						<RichText
 							tagName={headingTag}
 							value={heading}
@@ -369,11 +302,6 @@ const Edit = ({ attributes, setAttributes }) => {
 								color: headingColor ? headingColor : '#333333',
 							}}
 						/>
-						{anchorLinkShow && (
-							<a href="#">
-								<i className="dashicons dashicons-admin-links"></i>
-							</a>
-						)}
 					</div>
 					{showIcon && (
 						<div
@@ -406,20 +334,6 @@ const Edit = ({ attributes, setAttributes }) => {
 						allowedBlocks={true}
 						template={innerBlocksTemplate}
 					/>
-
-					{buttonShow && (
-						<button className="aagb_button_toggle">
-							<RichText
-								value={readText}
-								onChange={(readText) =>
-									setAttributes({ readText })
-								}
-								style={{
-									margin: 0,
-								}}
-							/>
-						</button>
-					)}
 				</div>
 			</div>
 		</Fragment>

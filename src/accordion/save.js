@@ -16,8 +16,6 @@ const Save = ({ attributes }) => {
 		heading,
 		headingTag,
 		headingColor,
-		anchorPosition,
-		anchorLinkShow,
 		showIcon,
 		iconClass,
 		iconPosition,
@@ -30,12 +28,6 @@ const Save = ({ attributes }) => {
 		link,
 		tab,
 		disableAccordion,
-		feedbackShow,
-		feedbacLabel,
-		yesBtn,
-		noBtn,
-		counterShow,
-		uniqueKey
 	} = attributes;
 
 	const activeClass = makeActive
@@ -58,40 +50,7 @@ const Save = ({ attributes }) => {
 		} else if (iconClass === 'insert') {
 			currentIconClass = 'remove';
 		}
-	} 
-	
-	const FeedBackBtn = () => {
-		// Get the current page ID
-		
-		return (
-            feedbackShow && (
-                <span
-                    className="feedback-btn-wrap"
-                    data-id={uniqueKey}
-					>
-						
-                    {feedbacLabel && (
-                        <span>{feedbacLabel}</span>
-                    )}
-
-                    {yesBtn && (
-                        <button className="feedback-btn" data-value="yes" data-id={uniqueKey}>
-                            {yesBtn}
-                            {counterShow && (<span className="count">0</span>)}
-                        </button>
-                    )}
-
-                    {noBtn && (
-                        <button className="feedback-btn" data-value="no" data-id={`${uniqueKey}`}>
-                            {noBtn}
-                            {counterShow && (<span className="count">0</span>)}
-                        </button>
-                    )}
-                </span>
-            )
-        );
-		
-	};
+	}
 
 	return (
 		<div
@@ -129,11 +88,7 @@ const Save = ({ attributes }) => {
 								padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 							}}
 						>
-							<div
-								className={`aab__accordion_heading ${iconPosition} ${
-									anchorPosition || ''
-								}`}
-							>
+							<div className="aab__accordion_heading">
 								<RichText.Content
 									className="aab__accordion_title"
 									tagName={headingTag}
@@ -146,23 +101,6 @@ const Save = ({ attributes }) => {
 									}}
 								/>
 							</div>
-							{showIcon && (
-								<div
-									className={`aab__accordion_icon`}
-									style={{
-										color: iconColor
-											? iconColor
-											: '#333333',
-										backgroundColor: iconBackground
-											? iconBackground
-											: 'transparent',
-									}}
-								>
-									<span
-										className={`aab__icon dashicons dashicons-${currentIconClass}`}
-									></span>
-								</div>
-							)}
 						</div>
 					</a>
 				</Fragment>
@@ -179,11 +117,7 @@ const Save = ({ attributes }) => {
 							padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 						}}
 					>
-						<div
-							className={`aab__accordion_heading ${iconPosition} ${
-								anchorPosition || ''
-							}`}
-						>
+						<div className="aagb__accordion_heading">
 							<RichText.Content
 								className="aab__accordion_title"
 								tagName={headingTag}
@@ -223,28 +157,7 @@ const Save = ({ attributes }) => {
 					>
 						<InnerBlocks.Content />
 
-
-
-
-						<FeedBackBtn />
-
-
-
 					</div>
-					{anchorLinkShow === true && (
-						<script>
-							{`
-								jQuery(document).ready(function($) {
-									if ($('.aab__accordion_heading').length) {
-										$(document).ready(function() {
-											var Anchor1 = new AnchorJS();
-											Anchor1.add('.aab__accordion_heading');
-										});
-									}
-								});
-							`}
-						</script>
-					)}
 				</Fragment>
 			)}
 		</div>

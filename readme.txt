@@ -1,6 +1,6 @@
 === Advanced Accordion Gutenberg Block ===
-Contributors: mdjwel
-Tags: accordion block, gutenberg block, FAQ, FAQs, Accordion, FAQ block, FAQ gutenberg block, accordion gutenberg block
+Contributors: spiderdevs, mdjwel
+Tags: accordion, FAQ, FAQs, details, group accordion
 Requires at least: 5.0
 Tested up to: 6.0.2
 Stable tag: 4.5.1
