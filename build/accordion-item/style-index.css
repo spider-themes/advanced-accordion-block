@@ -55,9 +55,6 @@
   font-size: 1.4rem !important;
   line-height: 0.5;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading a.anchorjs-link:after {
-  font-size: 1.4rem !important;
-}
 .wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading:hover a {
   opacity: 1;
 }

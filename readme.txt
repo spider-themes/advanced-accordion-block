@@ -54,6 +54,14 @@ No. It has been developed with 100% Gutenberg Native components. No Framework at
 
 Definitely, it is responsive.
 
+= Can I use it with any theme? =
+Yes, you can use it with any theme.
+
+= Will it slow down my site? =
+Never, it is light-weight and never slow down your site. In addition, it only loads scripts on the pages where the block is used.
+
+= Is it built with Gutenberg Native Components? =
+Yes, it is built with 100% Gutenberg Native Components.
 
 == Screenshots ==
 
@@ -76,7 +84,13 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 == Changelog ==
 
-= 4.1.0  (23 November 2023) =
+= 4.6.2 (24 March 2024) =
+New: Pro version integrated (Pro features shown in the blocks)
+Fixed: Some minor issues
+Tweaked: Removed some unused CSS
+Updated: Freemius SDK to 2.6.2
+
+= 4.6.1  (23 November 2023) =
 Updated: Freemius SDK to 2.6.1
 Tweaked: Removed some unnecessary links
 

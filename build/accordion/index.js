@@ -97,7 +97,9 @@ const Edit = _ref => {
     counterShow,
     uniqueKey
   } = attributes;
-  const numericClientId = clientId.replace(/\D/g, '').slice(0, 5); // Ensure numericClientId contains exactly 5 characters
+  const numericClientId = clientId.replace(/\D/g, '').slice(0, 5); // admin url
+
+  const adminUrl = aagb_local_object.admin_url; // Ensure numericClientId contains exactly 5 characters
 
   while (numericClientId.length < 5) {
     numericClientId = '0' + numericClientId;
@@ -230,19 +232,7 @@ const Edit = _ref => {
       headingTag
     }),
     value: headingTag
-  })), licensing.can_use_premium_code && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: __('Anchor Link', 'advanced-accordion-block'),
-    initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Notice, {
-    actions: [{
-      label: 'Buy Pro',
-      variant: 'primary'
-    }],
-    status: "warning",
-    isDismissible: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(React.Fragment, {
-    key: ".0"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, "This is premium feature. Buy the Pro version to unlock this feature."), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, " This feature allows you to create unique links for each FAQ item within the accordion. It's handy for directing users to specific FAQs from external sources or within the same page.  ")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: __('Accordion Icon', 'advanced-accordion-block'),
     initialOpen: false
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
@@ -297,48 +287,19 @@ const Edit = _ref => {
       bodyBg
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: __('Feedback', 'advanced-accordion-block'),
+    title: __('Pro Features', 'advanced-accordion-block'),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: __('Enable / Disable', 'advanced-accordion-block'),
-    checked: feedbackShow,
-    onChange: () => setAttributes({
-      feedbackShow: !feedbackShow
-    })
-  }), feedbackShow == 1 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: __('Label', 'advanced-accordion-block'),
-    value: feedbacLabel,
-    onChange: feedbacLabel => setAttributes({
-      feedbacLabel
-    })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: __('Yes', 'advanced-accordion-block'),
-    value: yesBtn,
-    onChange: yesBtn => setAttributes({
-      yesBtn
-    }),
-    className: "bbpc-control-half yes-btn"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: __('No', 'advanced-accordion-block'),
-    value: noBtn,
-    onChange: noBtn => setAttributes({
-      noBtn
-    }),
-    className: "bbpc-control-half no-btn"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: __('Counter', 'advanced-accordion-block'),
-    checked: counterShow,
-    onChange: () => setAttributes({
-      counterShow: !counterShow
-    })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: __('ID', 'advanced-accordion-block'),
-    value: uniqueKey,
-    onChange: uniqueKey => setAttributes({
-      uniqueKey
-    }),
-    disabled: true
-  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Notice, {
+    actions: [{
+      label: 'Buy Pro',
+      variant: 'primary',
+      url: adminUrl + 'options-general.php?page=advanced-accordion-block-pricing'
+    }],
+    status: "warning",
+    isDismissible: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(React.Fragment, {
+    key: ".0"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("b", null, "Anchor Link"), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("br", null), "Generate unique links for each FAQ item. It's handy for directing users to specific FAQs from external sources or within the same page."), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("b", null, "Feedback"), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("br", null), "Add feedback voting buttons to each FAQ item. From the total vote count, you can understand how helpful an accordion is."), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("b", null, "Open All / Close All"), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("br", null), "A functionality that lets users expand or collapse all accordion items simultaneously. It provides convenience, especially when users want to view or hide all FAQ items at once."), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("b", null, "Read More"), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("br", null), "Expand the accordion content beyond a certain character limit or line count, displaying a \"Read More\" button or link to reveal the entire content."))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: `aab__accordion_container ${makeActive ? `active__accordion_container_${uniqueId}` : ''}`
   }), {
     style: {
@@ -405,12 +366,7 @@ const Edit = _ref => {
       margin: 0,
       color: headingColor ? headingColor : '#333333'
     }
-  }), anchorLinkShow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
-    className: "anchorjs-link",
-    href: "#"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
-    className: "dashicons dashicons-admin-links"
-  }))), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  })), showIcon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `aab__accordion_icon`,
     style: {
       color: iconColor ? iconColor : '#333333',
@@ -903,7 +859,7 @@ function _extends() {
   \**********************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"aab/accordion-block","version":"0.1.0","title":"Separate Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"uniqueId":{"type":"string"},"border":{"type":"object","default":{"width":"1px","color":"#cccccc","style":"solid"}},"paddings":{"type":"object","default":{"top":"10px","left":"15px","right":"15px","bottom":"10px"}},"margins":{"type":"object","default":{"top":"0px","bottom":"15px"}},"borderRadius":{"type":"number","default":0},"heading":{"type":"string","default":"Accordion Heading"},"headingTag":{"type":"string","default":"h4"},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"showIcon":{"type":"boolean","default":true},"anchorLinkShow":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"id":{"type":"string"},"linkedAccordion":{"type":"boolean","default":false},"link":{"type":"string","default":"#"},"tab":{"type":"boolean","default":false},"disableAccordion":{"type":"boolean","default":false},"feedbackShow":{"type":"boolean","default":false},"feedbacLabel":{"type":"string","default":"Was this answer helpful?"},"yesBtn":{"type":"string","default":"Yes"},"noBtn":{"type":"string","default":"No"},"counterShow":{"type":"boolean","default":false},"incNumber":{"type":"number","default":1},"anchorPosition":{"type":"string","default":"aab_right_link"},"uniqueKey":{"type":"string"}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"aab/accordion-block","version":"0.1.0","title":"Individual Accordion","category":"accordion-block","description":"Build Accordion and FAQs Easily.","supports":{"html":false,"anchor":true},"example":{"attributes":{"heading":"Accordion Heading"}},"attributes":{"uniqueId":{"type":"string"},"border":{"type":"object","default":{"width":"1px","color":"#cccccc","style":"solid"}},"paddings":{"type":"object","default":{"top":"10px","left":"15px","right":"15px","bottom":"10px"}},"margins":{"type":"object","default":{"top":"0px","bottom":"15px"}},"borderRadius":{"type":"number","default":0},"heading":{"type":"string","default":"Accordion Heading"},"headingTag":{"type":"string","default":"h4"},"headingColor":{"type":"string"},"headerBg":{"type":"string"},"showIcon":{"type":"boolean","default":true},"anchorLinkShow":{"type":"boolean","default":true},"iconClass":{"type":"string","default":"plus-alt2"},"iconPosition":{"type":"string","default":"aab_right_icon"},"iconColor":{"type":"string"},"iconBackground":{"type":"string"},"bodyBg":{"type":"string"},"makeActive":{"type":"boolean","default":false},"id":{"type":"string"},"linkedAccordion":{"type":"boolean","default":false},"link":{"type":"string","default":"#"},"tab":{"type":"boolean","default":false},"disableAccordion":{"type":"boolean","default":false},"feedbackShow":{"type":"boolean","default":false},"feedbacLabel":{"type":"string","default":"Was this answer helpful?"},"yesBtn":{"type":"string","default":"Yes"},"noBtn":{"type":"string","default":"No"},"counterShow":{"type":"boolean","default":false},"incNumber":{"type":"number","default":1},"anchorPosition":{"type":"string","default":"aab_right_link"},"uniqueKey":{"type":"string"}},"textdomain":"advanced-accordion-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

@@ -1,18 +1,16 @@
 <?php
 /**
- * Plugin Name:        Advanced Accordion Block
- * Description:        <strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
- * Requires at least:    5.7
- * Requires PHP:        7.4
- * Version:            5.0.0
- * Plugin URI:            https://spider-themes.net
- * Author:                spider-themes
- * Author URI:            https://spider-themes.net
- * License:             GPLv3 or later
- * License URI:         http://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain:        advanced-accordion-block
- *
- * @package            @wordpress/create-block
+ * Plugin Name: Advanced Accordion Block
+ * Description: <strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
+ * Requires at least: 5.7
+ * Requires PHP: 7.4
+ * Version: 4.6.2
+ * Plugin URI: https://spider-themes.net
+ * Author: spider-themes
+ * Author URI: https://spider-themes.net
+ * License: GPLv3 or later
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+ * Text Domain: advanced-accordion-block
  */
 
 // Stop Direct Access
@@ -44,7 +42,7 @@ if ( ! function_exists( 'aab_fs' ) ) {
 				),
 				'menu'           => array(
 					'slug'    => 'advanced-accordion-block',
-					'account' => true,
+					'account' => false,
 					'network' => true,
 					'contact' => false,
 					'support' => false,
@@ -210,7 +208,6 @@ final class AAGB_BLOCKS_CLASS {
 		}
 
 		// enqueue JS
-		wp_enqueue_script( 'aagb-anchor-js', AAGB_LIB_URL . 'js/anchor.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'aagb-separate-accordion', AAGB_LIB_URL . 'js/separate-accordion.js', array( 'jquery' ), AAGB_VERSION, true );
 		wp_enqueue_script( 'aagb-accordion-group', AAGB_LIB_URL . 'js/group-accordion.js', array( 'jquery' ), AAGB_VERSION, true );
 
@@ -218,9 +215,10 @@ final class AAGB_BLOCKS_CLASS {
 
 		wp_localize_script( 'jquery', 'aagb_local_object', array(
 			'ajax_url'  => admin_url( 'admin-ajax.php' ),
+			'admin_url' => admin_url(),
 			'nonce'     => wp_create_nonce( 'aagb_accordion_nonce' ),
 			'licensing' => $licensing
-		) );
+		));
 	}
 }
 
