@@ -1,26 +1,15 @@
-import { InnerBlocks, useBlockProps, RichText } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
-
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 const Save = ({ attributes }) => {
-	const {
-		uniqueId,
-		placeholderText,
-		closeText,
-		openText,
-		activetorClass,
-	} = attributes;
+	const { uniqueId } = attributes;
 
 	return (
-		<Fragment>
-			<div
-				{...useBlockProps.save({
-					className: `searchable aagb_accordion_${uniqueId} ${activetorClass}`,
-				})}
-			>
-				<InnerBlocks.Content />
-			</div>
-		</Fragment>
+		<div
+			{...useBlockProps.save({
+				className: `aagb_accordion_${uniqueId}`,
+			})}
+		>
+			<InnerBlocks.Content />
+		</div>
 	);
 };
-
 export default Save;

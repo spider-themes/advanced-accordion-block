@@ -14,6 +14,7 @@ import {
 	RangeControl,
 	SelectControl,
 	ToggleControl,
+	Notice,
 	__experimentalBoxControl as BoxControl,
 	__experimentalBorderControl as BorderControl,
 } from '@wordpress/components';
@@ -26,6 +27,9 @@ import tags from '../tags';
 // include editor styles
 import './editor.scss';
 
+// admin url
+const adminUrl = aagb_local_object.admin_url;
+// icon positions
 const iconPositions = [
 	{
 		label: 'Left',
@@ -34,16 +38,6 @@ const iconPositions = [
 	{
 		label: 'Right',
 		value: 'aagb_right_icon',
-	},
-];
-const anchorPositions = [
-	{
-		label: 'Left',
-		value: 'aagb_left_link',
-	},
-	{
-		label: 'Right',
-		value: 'aagb_right_link',
 	},
 ];
 
@@ -64,19 +58,7 @@ const Edit = ({ attributes, setAttributes }) => {
 		iconBackground,
 		headerBg,
 		bodyBg,
-		anchorPosition,
-		contentCount,
 	} = attributes;
-	// Generate the template for InnerBlocks based on contentCount
-	const innerBlocksTemplate = Array.from(
-		{ length: contentCount },
-		(_, index) => [
-			'core/paragraph',
-			{
-				content: `Content ${index + 1}`,
-			},
-		]
-	);
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -163,6 +145,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						max={50}
 					/>
 				</PanelBody>
+
 				<PanelBody
 					initialOpen={false}
 					title={__('Accordion Head', 'advanced-accordion-block')}
@@ -255,6 +238,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						</Fragment>
 					)}
 				</PanelBody>
+
 				<PanelBody
 					title={__('Accordion Body', 'advanced-accordion-block')}
 					initialOpen={false}
@@ -268,8 +252,55 @@ const Edit = ({ attributes, setAttributes }) => {
 						onChange={(bodyBg) => setAttributes({ bodyBg })}
 					/>
 				</PanelBody>
-			</InspectorControls>
 
+				<PanelBody
+						title={__('Pro Features', 'advanced-accordion-block')}
+						initialOpen={false}
+				>
+					<Notice
+							actions={[
+								{
+									label: 'Buy Pro',
+									variant: 'primary',
+									url: adminUrl + 'options-general.php?page=advanced-accordion-block-pricing',
+								},
+							]}
+							status="warning"
+							isDismissible={false}>
+						<React.Fragment key=".0">
+							<p>
+								<b>Anchor Link</b> <br />
+								Generate unique links for each FAQ item. It's handy for directing users to specific FAQs from external sources or within the same page.
+							</p>
+
+							<p>
+								<b>Feedback</b> <br />
+								Add feedback voting buttons to each FAQ item. From the total vote count, you can understand how helpful an accordion is.
+							</p>
+
+							<p>
+								<b>Open All / Close All</b> <br />
+								A functionality that lets users expand or collapse all accordion items simultaneously. It provides convenience, especially when users want to view or hide all FAQ items at once.
+							</p>
+
+							<p>
+								<b>Read More</b> <br />
+								Expand the accordion content beyond a certain character limit or line count, displaying a "Read More" button or link to reveal the entire content.
+							</p>
+
+							<p>
+								<b>Instant Search</b> <br />
+								Enable a search bar to help users find specific FAQs quickly. It's useful when you have a long list of FAQs.
+							</p>
+
+							<p>
+								<b> Activator Event</b> <br />
+								Choose the event type to activate the accordion. You can choose from Click, Hover, or Autoplay.
+							</p>
+						</React.Fragment>
+					</Notice>
+				</PanelBody>
+			</InspectorControls>
 			<div
 				{...useBlockProps({
 					className: `aagb__accordion_container ${
@@ -291,7 +322,7 @@ const Edit = ({ attributes, setAttributes }) => {
 						padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 					}}
 				>
-					<div className="aagb__accordion_heading">
+					<div className={`aagb__accordion_heading ${iconPosition}`}>
 						<RichText
 							tagName={headingTag}
 							value={heading}
@@ -332,7 +363,15 @@ const Edit = ({ attributes, setAttributes }) => {
 				>
 					<InnerBlocks
 						allowedBlocks={true}
-						template={innerBlocksTemplate}
+						template={[
+							[
+								'core/paragraph',
+								{
+									placeholder:
+										'Write your content or add any block here...',
+								},
+							],
+						]}
 					/>
 				</div>
 			</div>

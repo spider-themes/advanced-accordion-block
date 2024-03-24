@@ -1,146 +1,48 @@
 /*
 * Style Works for both Editor and Frontend
 */
-.wp-block-aab-accordion-item {
+.wp-block-aab-accordion-block {
   overflow: hidden;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head {
+.wp-block-aab-accordion-block.aab__accordion_disabled {
+  pointer-events: none !important;
+}
+.wp-block-aab-accordion-block a.aab__accordion_link {
+  display: block;
+  text-decoration: none !important;
+}
+.wp-block-aab-accordion-block .aab__accordion_head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   cursor: pointer;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_icon {
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_icon {
   width: 20px;
   height: 20px;
   border-radius: 50%;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head.aagb_right_icon {
+.wp-block-aab-accordion-block .aab__accordion_head.aab_right_icon {
   flex-direction: row;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head.aagb_left_icon {
+.wp-block-aab-accordion-block .aab__accordion_head.aab_left_icon {
   flex-direction: row-reverse;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_right_icon {
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading.aab_right_icon {
   margin-right: 20px;
   flex: 1;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_left_icon {
+.wp-block-aab-accordion-block .aab__accordion_head .aab__accordion_heading.aab_left_icon {
   margin-left: 20px;
   flex: 1;
 }
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_right_link {
-  display: flex;
-  align-items: center;
-}
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_left_link {
-  position: relative;
-}
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_left_link a {
-  position: absolute;
-  left: 0;
-  top: 2px;
-  padding-left: 0px !important;
-}
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading.aagb_left_link .aagb__accordion_title {
-  padding-left: 30px;
-}
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading a {
-  text-decoration: none;
-  color: #333333;
-  opacity: 0.5;
-  font-size: 1.4rem !important;
-  line-height: 0.5;
-}
-.wp-block-aab-accordion-item .aagb__accordion_head .aagb__accordion_heading:hover a {
-  opacity: 1;
-}
-.wp-block-aab-accordion-item .collapse-icon span {
+.wp-block-aab-accordion-block .collapse-icon span {
   display: block;
 }
-.wp-block-aab-accordion-item .aagb__accordion_body {
+.wp-block-aab-accordion-block .aab__accordion_body {
   display: none;
 }
-
-.aagb_form_inner {
-  max-width: 100%;
-  width: 600px;
-  margin: 0 auto 40px;
-  text-align: center;
-}
-.aagb_form_inner .aagb_form_group {
-  position: relative;
-}
-.aagb_form_inner .aagb_form_group:before {
-  position: absolute;
-  right: 14px;
-  content: "\f179";
-  font-family: dashicons;
-  top: 11px;
-  font-size: 26px;
-  color: rgba(68, 68, 68, 0.2666666667);
-}
-.aagb_form_inner .aagb_form_control {
-  width: 100%;
-  border: 1px solid #ccc;
-  padding: 0 30px;
-  border-radius: 4px;
-  height: 60px;
-  font-size: 18px;
-  color: #333;
-}
-.aagb_form_inner .help-block {
-  font-size: 16px;
-}
-
-.aagb_overlay {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff 75%);
-  height: 50px;
-  margin-top: -50px;
-  position: relative;
-}
-
-.aagb_accordion_wrapper_btn {
-  display: flex;
-  justify-content: flex-end;
-}
-.aagb_accordion_wrapper_btn a {
-  margin: 0px 0 5px 16px;
-  color: #333;
-  font-weight: 500;
-  font-size: 16px;
-  text-decoration: none !important;
-  display: flex;
-}
-.aagb_accordion_wrapper_btn a:hover {
-  color: #069;
-}
-.aagb_accordion_wrapper_btn a svg {
-  width: 0.875em;
-  margin-right: 4px;
-}
-
-.aagb__accordion_body .aagb_button_toggle {
-  padding: 0px;
-  border: 0px;
-  color: #333;
-  font-size: 16px;
-  font-weight: 500;
-  background: transparent;
-  border: 0px;
-}
-.aagb__accordion_body .aagb_button_toggle:hover {
-  color: #4c4cf1;
-  text-decoration: underline;
-}
-.aagb__accordion_body .aagb_button_toggle:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.label-d-block {
+.wp-block-aab-accordion-block .aab__accordion_body.aab__accordion_body--show {
   display: block;
-  margin-bottom: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

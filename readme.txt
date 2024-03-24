@@ -3,7 +3,7 @@ Contributors: spiderdevs, mdjwel
 Tags: accordion, FAQ, FAQs, details, group accordion
 Requires at least: 5.0
 Tested up to: 6.0.2
-Stable tag: 4.5.1
+Stable tag: 4.6.3
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,7 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 **Advanced Accordion Gutenberg Block** is a custom native Gutenberg Block that allows you to build a **FAQs Section** or **Accordion** easily on your site post and page using **Gutenberg Editor**.
 
 ### Video Overview
-[youtube https://www.youtube.com/watch?v=gZ_zL6RwQhA]
+[youtube https://www.youtube.com/watch?v=K40z8KxojxE]
 
 ### Key Features
 * Custom Minimal Design
@@ -27,19 +27,13 @@ Advanced Accordion Gutenberg Block - is a custom Gutenberg Block that allows you
 * **Unlimited Styling with Custom Margin, Padding, Border Radius, Color, Background, Tag Selection, etc**
 * **Highly Customizable with a lot of options**
 * **All Content Types are supported for accordion body content**
-* **Custom Color Pallete**
+* **Custom Color Palette**
 * **Active Accordion on Page Load**
 * **Responsive, SEO friendly**
 * Unlimited FAQs
 * Infinite Reusable
 
-## How to make your block compatible with upgrade Version (4.0.0)
-
-### Watch This Video
-[youtube https://www.youtube.com/watch?v=FYgObUj5ArA]
-
-> Version 4.5.0 has come with a lot of features and cleaness. You may call it as a next level Accordion/FAQs block. If you update your existing block (1.x.x~4.1.0), you will find that your blocks are broken in Editor. It says **"Attempt Block Recovery"**. So, simply hit on **"Attempt Block Recovery"**. That's it, now your block is compatible with the update version.
-
+> Version 4.5.0 has come with a lot of features and cleanness. You may call it as a next level Accordion/FAQs block. If you update your existing block (1.x.x~4.1.0), you will find that your blocks are broken in Editor. It says **"Attempt Block Recovery"**. So, simply hit on **"Attempt Block Recovery"**. That's it, now your block is compatible with the update version.
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
 
@@ -83,6 +77,10 @@ It's really easy and super simple to install **Quick Edit** plugin.
 
 
 == Changelog ==
+
+= 4.6.3 (24 March 2024) =
+Tweaked: Removed some unused code of the Pro version
+Tweaked: Compatibility improved with the Pro version
 
 = 4.6.2 (24 March 2024) =
 New: Pro version integrated (Pro features shown in the blocks)

@@ -4,7 +4,7 @@
  * Description: <strong>Advanced Accordion Block</strong> is a custom Gutenberg Block that allows to showcase the content in accordion mode. It also helps to build FAQ sections easily.
  * Requires at least: 5.7
  * Requires PHP: 7.4
- * Version: 4.6.2
+ * Version: 4.6.3
  * Plugin URI: https://spider-themes.net
  * Author: spider-themes
  * Author URI: https://spider-themes.net
@@ -121,7 +121,7 @@ final class AAGB_BLOCKS_CLASS {
 	 * @access public
 	 */
 	public function core_includes() {
-		require_once __DIR__ . '/includes/functions.php';
+		//require_once __DIR__ . '/includes/functions.php';
 	}
 
 	/**

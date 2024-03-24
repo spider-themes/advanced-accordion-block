@@ -64,10 +64,6 @@
 			"type": "boolean",
 			"default": true
 		},
-		"anchorLinkShow":{
-			"type": "boolean",
-			"default": true
-		},
 		"iconClass": {
 			"type": "string",
 			"default": "plus-alt2"
@@ -107,37 +103,6 @@
 		"disableAccordion": {
 			"type": "boolean",
 			"default": false
-		},
-		"feedbackShow": {
-			"type": "boolean",
-			"default": false
-		},
-		"feedbacLabel": {
-			"type": "string",
-			"default": "Was this answer helpful?"
-		},
-		"yesBtn": {
-			"type": "string",
-			"default": "Yes"
-		},
-		"noBtn": {
-			"type": "string",
-			"default": "No"
-		},		
-		"counterShow": {
-			"type": "boolean",
-			"default": false
-		},
-		"incNumber": {
-			"type": "number",
-			"default": 1
-		},		 
-		"anchorPosition": {
-			"type": "string",
-			"default": "aab_right_link"
-		},
-		"uniqueKey": {
-			"type": "string"
 		}
 	},
 	"textdomain": "advanced-accordion-block",

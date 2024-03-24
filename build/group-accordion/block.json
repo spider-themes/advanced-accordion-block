@@ -9,11 +9,6 @@
 		"html": false,
 		"anchor": true
 	},
-	"example": {
-		"attributes": {
-			"heading": "Accordion Heading"
-		}
-	},
 	"attributes": {
 		"uniqueId": {
 			"type": "string"
@@ -25,30 +20,6 @@
 				"color": "#77b5f7",
 				"style": "solid"
 			}
-		},
-		"searchShow":{
-			"type": "boolean",
-			"default": false
-		},
-		"showAllbtn":{
-			"type": "boolean",
-			"default": false
-		},
-		"closeText":{
-			"type": "string",
-			"default": "Close all"
-		},
-		"openText":{
-			"type": "string",
-			"default": "Show all"
-		},
-		"heading": {
-			"type": "string",
-			"default": "Accordion Heading"
-		},
-		"activetorClass": {
-			"type": "string",
-			"default": "click"
 		}
 	},
 	"textdomain": "advanced-accordion-block",

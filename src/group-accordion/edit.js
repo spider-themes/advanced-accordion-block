@@ -1,45 +1,31 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 // import editor style
 import './editor.scss';
-import React, { useState } from 'react';
 import {
-	PanelBody,
-	ToggleControl,
+	PanelBody, Notice,
 	__experimentalBorderControl as BorderControl,
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
+
 import colors from '../colors';
 import {
 	InnerBlocks,
 	useBlockProps,
 	InspectorControls,
-	RichText,
-	Notice,
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 
+import { Fragment } from '@wordpress/element';
 
 // admin url
 const adminUrl = aagb_local_object.admin_url;
+// edit component
 const Edit = ({ attributes, setAttributes, clientId }) => {
-	const {
-		uniqueId,
-		activeAccordionBorder,
-	} = attributes;
-
-	const [activetorClass, setActivetorClass] = useState('click');
+	const { uniqueId, activeAccordionBorder } = attributes;
 
 	// set unique ID
 	setAttributes({
 		uniqueId: clientId,
 	});
-	const handleActivetorChange = (value) => {
-		setActivetorClass(value);
-		setAttributes({ activetorClass: value });
-	};
-
 	return (
 		<Fragment>
 			<style>
@@ -86,7 +72,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 							</p>
 
 							<p>
-								<b>Voting Feedback</b> <br />
+								<b>Feedback</b> <br />
 								Add feedback voting buttons to each FAQ item. From the total vote count, you can understand how helpful an accordion is.
 							</p>
 

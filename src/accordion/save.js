@@ -2,10 +2,7 @@
 /* eslint-disable no-lonely-if */
 import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 const { Fragment } = wp.element;
-const { select } = wp.data;
-
 const Save = ({ attributes }) => {
-	
 	const {
 		uniqueId,
 		makeActive,
@@ -33,9 +30,9 @@ const Save = ({ attributes }) => {
 	const activeClass = makeActive
 		? `aab__accordion_body--show active__accordion_${uniqueId}`
 		: '';
+
 	// initial accordion stage
 	let currentIconClass;
-
 	if (makeActive === false) {
 		currentIconClass = iconClass;
 	} else {
@@ -88,7 +85,9 @@ const Save = ({ attributes }) => {
 								padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 							}}
 						>
-							<div className="aab__accordion_heading">
+							<div
+								className={`aab__accordion_heading ${iconPosition}`}
+							>
 								<RichText.Content
 									className="aab__accordion_title"
 									tagName={headingTag}
@@ -101,6 +100,23 @@ const Save = ({ attributes }) => {
 									}}
 								/>
 							</div>
+							{showIcon && (
+								<div
+									className={`aab__accordion_icon`}
+									style={{
+										color: iconColor
+											? iconColor
+											: '#333333',
+										backgroundColor: iconBackground
+											? iconBackground
+											: 'transparent',
+									}}
+								>
+									<span
+										className={`aab__icon dashicons dashicons-${currentIconClass}`}
+									></span>
+								</div>
+							)}
 						</div>
 					</a>
 				</Fragment>
@@ -117,7 +133,9 @@ const Save = ({ attributes }) => {
 							padding: `${paddings.top} ${paddings.left} ${paddings.bottom} ${paddings.right}`,
 						}}
 					>
-						<div className="aagb__accordion_heading">
+						<div
+							className={`aab__accordion_heading ${iconPosition}`}
+						>
 							<RichText.Content
 								className="aab__accordion_title"
 								tagName={headingTag}
@@ -156,7 +174,6 @@ const Save = ({ attributes }) => {
 						}}
 					>
 						<InnerBlocks.Content />
-
 					</div>
 				</Fragment>
 			)}
